@@ -9,6 +9,8 @@ Wireless Stepper Motor Driver
 </div>
 <img src="/docs/media/6.jpg" width="600">
 
+[Quick overview video here](https://youtube.com/shorts/FnWmoFnG2Ak)
+
 ## Overview
 The VAL3000 is the easiest, fastest, cheapest, safest, and most wireless way to spin a stepper motor.
 
