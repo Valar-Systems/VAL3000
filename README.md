@@ -1,7 +1,7 @@
 # VAL3000
 Wireless Stepper Motor Driver
 
-#### [Purchase it here](https://link-url-here.org). If sold out, PLEASE sign up to the "Notifi me when available" button, that's the only way we know to make more. If you don't sign up, we won't make more!
+#### [Purchase it here](https://valarsystems.com/products/val3000). If sold out, PLEASE sign up to the "Notifi me when available" button, that's the only way we know to make more. If you don't sign up, we won't make more!
 
 Learn to program it using our Trinamic Guide.
 
