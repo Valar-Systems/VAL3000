@@ -63,14 +63,13 @@ void loop() {
     }
   }
 
-    if (lastStateBtn3 == HIGH && currentStateBtn3 == LOW) {
-    Serial.println("Btn2 is pressed");
+  if (lastStateBtn3 == HIGH && currentStateBtn3 == LOW) {
+    Serial.println("Btn3 is pressed");
     if (is_moving) {
       // Do nothing
     } else {
-      motor_position = maximum_motor_position;
-      Serial.print("set position: ");
-      Serial.println(maximum_motor_position);
+      setCloseCall();
+      ESPUI.updateSlider(positionSlider, target_percent);
     }
   }
 
@@ -78,5 +77,4 @@ void loop() {
   lastStateBtn1 = currentStateBtn1;
   lastStateBtn2 = currentStateBtn2;
   lastStateBtn3 = currentStateBtn3;
-
 }

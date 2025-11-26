@@ -20,8 +20,8 @@ uint16_t positionLabel;
 #define DRIVER_ADDRESS 0b00  // TMC2209 Driver address according to MS1 and MS2
 #define R_SENSE 0.11f        // R_SENSE for current calc.
 
-#define CLOSE_VELOCITY 1500
-#define OPEN_VELOCITY -1500
+#define CLOSE_VELOCITY 600
+#define OPEN_VELOCITY -600
 #define STOP_MOTOR_VELOCITY 0
 
 // function prototypes
@@ -29,9 +29,6 @@ void move_close(void);
 void move_open(void);
 void move_open(void);
 void stop(void);
-
-int btn1Press;
-int btn2Press;
 
 void position_watcher_task(void *parameter);
 TaskHandle_t position_watcher_task_handler = NULL;
@@ -75,12 +72,13 @@ void disable_driver() {
   digitalWrite(ENABLE_PIN, 1);
 }
 
-void setZero() {
-  motor_position = 0;
-  Serial.print("motor_position: ");
-  Serial.println(motor_position);
-  ESPUI.updateLabel(positionLabel, String(motor_position));
-}
+void setCloseCall() {
+      Serial.println("Button Pressed");
+      motor_position = maximum_motor_position;
+      target_percent = 100;
+      Serial.print("set close position: ");
+      Serial.println(target_percent);
+  }
 
 /* Function that commands motor to move to position */
 void move_to_percent100ths(uint16_t percent100ths) {
@@ -98,9 +96,9 @@ void move_to_percent100ths(uint16_t percent100ths) {
       break;
   }
 
-  printf("target_position(): %i\n", target_position);
-  printf("motor_position(): %i\n", motor_position);
-  printf("maximum_motor_position(): %i\n", maximum_motor_position);
+  //printf("target_position(): %i\n", target_position);
+  //printf("motor_position(): %i\n", motor_position);
+  //printf("maximum_motor_position(): %i\n", maximum_motor_position);
 
   if (target_position == motor_position) {
     printf("Not moving the window because it is already at the desired position\n");
@@ -121,11 +119,11 @@ void move_close() {
     motor_position = 0;
   }
 
-  printf("motor_position close: %lu\n", motor_position);    // TESTING
-  printf("target_position close: %lu\n", target_position);  // TESTING
+  // printf("motor_position close: %lu\n", motor_position);    // TESTING
+  // printf("target_position close: %lu\n", target_position);  // TESTING
 
-  printf("max_motor_position close: %lu\n", maximum_motor_position);  // TESTING
-  printf("target_percent close: %lu\n", target_percent);  // TESTING
+  // printf("max_motor_position close: %lu\n", maximum_motor_position);  // TESTING
+  // printf("target_percent close: %lu\n", target_percent);  // TESTING
 
   stop_flag = false;
   is_closing = true;
@@ -134,7 +132,8 @@ void move_close() {
   xTaskCreate(position_watcher_task, "position_watcher_task", 4096, NULL, 1, &position_watcher_task_handler);
 
   enable_driver();
-  driver.VACTUAL(OPEN_VELOCITY);
+  // Add for loop for acceleration
+  driver.VACTUAL(CLOSE_VELOCITY);
 }
 
 void move_open() {
@@ -157,6 +156,7 @@ void move_open() {
   xTaskCreate(position_watcher_task, "position_watcher_task", 4096, NULL, 1, &position_watcher_task_handler);
 
   enable_driver();
+  // Add for loop for acceleration
   driver.VACTUAL(OPEN_VELOCITY);
 }
 

@@ -6,6 +6,7 @@ uint16_t speedMax;
 uint16_t accelMax;
 String display_wifi;
 
+uint16_t positionSlider;
 
 void numberMaxStepsCall(Control* sender, int type) {
   maximum_motor_position = sender->value.toInt();
@@ -79,8 +80,12 @@ void buttonSetCloseCall(Control* sender, int type) {
     case B_DOWN:
       Serial.println("Button Pressed");
       motor_position = maximum_motor_position;
+      target_percent = 100;
+
+      ESPUI.updateSlider(positionSlider, target_percent);
+
       Serial.print("set close position: ");
-      Serial.println(maximum_motor_position);
+      Serial.println(target_percent);
       break;
   }
 }
@@ -158,7 +163,7 @@ void ESPUIsetup() {
   uint16_t tab4 = ESPUI.addControl(ControlType::Tab, "API", "API");
 
   //Tab1: Positioning
-  uint16_t positionSlider = ESPUI.addControl(ControlType::Slider, "Position", String(target_percent), ControlColor::Alizarin, tab1, &sliderPosition); //Slider: Move to position
+  positionSlider = ESPUI.addControl(ControlType::Slider, "Position. 100 = Closed. 0 = Opened", String(target_percent), ControlColor::Alizarin, tab1, &sliderPosition); //Slider: Move to position
   ESPUI.addControl(ControlType::Min, "", "0", ControlColor::None, positionSlider);
   ESPUI.addControl(ControlType::Max, "", "100", ControlColor::None, positionSlider);
 
