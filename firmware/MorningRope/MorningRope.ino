@@ -28,9 +28,12 @@ void setup() {
 // Variables will change:
 int lastStateBtn1 = LOW;  // the previous state from the input pin
 int currentStateBtn1;     // the current reading from the input pin
+
 int lastStateBtn2 = LOW;  // the previous state from the input pin
 int currentStateBtn2;     // the current reading from the input pin
 
+int lastStateBtn3 = LOW;  // the previous state from the input pin
+int currentStateBtn3;     // the current reading from the input pin
 
 void loop() {
   dnsServer.processNextRequest();  // Process request for ESPUI
@@ -40,6 +43,7 @@ void loop() {
   // read the state of the switch/button:
   currentStateBtn1 = digitalRead(BUTTON_1_PIN);
   currentStateBtn2 = digitalRead(BUTTON_2_PIN);
+  currentStateBtn3 = digitalRead(WIFI_RESET_PIN);
 
   if (lastStateBtn1 == HIGH && currentStateBtn1 == LOW) {
     Serial.println("Btn1 is pressed");
@@ -59,8 +63,20 @@ void loop() {
     }
   }
 
+    if (lastStateBtn3 == HIGH && currentStateBtn3 == LOW) {
+    Serial.println("Btn2 is pressed");
+    if (is_moving) {
+      // Do nothing
+    } else {
+      motor_position = maximum_motor_position;
+      Serial.print("set position: ");
+      Serial.println(maximum_motor_position);
+    }
+  }
+
   // save the the last state
   lastStateBtn1 = currentStateBtn1;
   lastStateBtn2 = currentStateBtn2;
+  lastStateBtn3 = currentStateBtn3;
 
 }
