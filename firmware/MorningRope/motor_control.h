@@ -227,9 +227,6 @@ void setup_motors() {
   pinMode(ENABLE_PIN, OUTPUT);
   pinMode(STALLGUARD_PIN, INPUT);
   pinMode(INDEX_PIN, INPUT);
-  pinMode(WIFI_RESET_PIN, INPUT);
-  pinMode(BUTTON_1_PIN, INPUT);
-  pinMode(BUTTON_2_PIN, INPUT);
 
   if (opening_direction == 1) {
     driver.shaft(true);
