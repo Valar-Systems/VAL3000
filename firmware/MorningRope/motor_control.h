@@ -1,6 +1,9 @@
 uint16_t positionLabel;
 
+
+
 #include <TMCStepper.h>
+
 #include <ESPUI.h>
 #include <DNSServer.h>
 
@@ -8,14 +11,14 @@ uint16_t positionLabel;
 #include "soc/timer_group_reg.h"
 
 #define ENABLE_PIN 8
-#define BUTTON_1_PIN 3
-#define BUTTON_2_PIN 4
-#define WIFI_RESET_PIN 7
 #define RX_PIN 5
 #define TX_PIN 6
-
 #define STALLGUARD_PIN 1
 #define INDEX_PIN 0
+
+#define BUTTON_1_PIN GPIO_NUM_3
+#define BUTTON_2_PIN GPIO_NUM_4
+#define WIFI_RESET_PIN GPIO_NUM_7
 
 #define DRIVER_ADDRESS 0b00  // TMC2209 Driver address according to MS1 and MS2
 #define R_SENSE 0.11f        // R_SENSE for current calc.
@@ -35,6 +38,8 @@ TaskHandle_t position_watcher_task_handler = NULL;
 
 TMC2209Stepper driver(&Serial1, R_SENSE, DRIVER_ADDRESS);
 DNSServer dnsServer;
+
+
 
 void IRAM_ATTR stall_interrupt() {
   stall_flag = true;
@@ -227,9 +232,10 @@ void setup_motors() {
   pinMode(ENABLE_PIN, OUTPUT);
   pinMode(STALLGUARD_PIN, INPUT);
   pinMode(INDEX_PIN, INPUT);
-  pinMode(WIFI_RESET_PIN, INPUT);
-  pinMode(BUTTON_1_PIN, INPUT);
-  pinMode(BUTTON_2_PIN, INPUT);
+
+  attachInterrupt(STALLGUARD_PIN, stall_interrupt, RISING);
+  attachInterrupt(INDEX_PIN, index_interrupt, RISING);
+
 
   if (opening_direction == 1) {
     driver.shaft(true);
@@ -305,6 +311,5 @@ void setup_motors() {
   driver.pwm_grad(PWM_grad);  // Test different initial values. Use scope.
   driver.pwm_ofs(36);
 
-  attachInterrupt(STALLGUARD_PIN, stall_interrupt, RISING);
-  attachInterrupt(INDEX_PIN, index_interrupt, RISING);
+
 }

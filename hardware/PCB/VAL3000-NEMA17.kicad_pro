@@ -561,8 +561,8 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "G:/My Drive/Products/VAL-3000/PCB/12-3-25/",
-      "pos_files": "G:/My Drive/Products/VAL-3000/PCB/12-3-25/",
+      "plot": "G:/My Drive/Products/VAL-3000/PCB/11-28-25/",
+      "pos_files": "G:/My Drive/Products/VAL-3000/PCB/11-28-25/gerber/",
       "specctra_dsn": "",
       "step": "MorningRope_3D.step",
       "svg": "",
@@ -572,7 +572,7 @@
   },
   "schematic": {
     "annotate_start_num": 0,
-    "bom_export_filename": "G:\\My Drive\\Products\\VAL-3000\\PCB\\12-3-25\\VAL3000.csv",
+    "bom_export_filename": "G:\\My Drive\\Products\\VAL-3000\\PCB\\11-28-25\\VAL3000.csv",
     "bom_fmt_presets": [],
     "bom_fmt_settings": {
       "field_delimiter": ",",
