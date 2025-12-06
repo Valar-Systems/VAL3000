@@ -1,22 +1,18 @@
 #include <TMCStepper.h>
+#include <Button.h>
 
 #define STEP_PIN 10
-
 #define ENABLE_PIN 8
 #define RX_PIN 5
 #define TX_PIN 6
-
 #define STALLGUARD_PIN 1
 #define INDEX_PIN 0
-
-#define BUTTON_1_PIN 3
-#define BUTTON_2_PIN 4
-#define BUTTON_WIFI_PIN 7
+#define BUTTON_1_PIN GPIO_NUM_3
+#define BUTTON_2_PIN GPIO_NUM_4
+#define BUTTON_WIFI_PIN GPIO_NUM_7
 
 #define R_SENSE 0.11f     // R_SENSE for current calc.
 #define DRIVER_ADDRESS 0  // TMC2209 Driver address according to MS1 and MS2
-
-
 
 // ## Speed
 // Sets the speed in microsteps per second.
@@ -73,6 +69,17 @@ void IRAM_ATTR index_interrupt(void) {
   }
 }
 
+static void btn1SingleClickCb(void *button_handle, void *usr_data) {
+  Serial.println("Button single click");
+  driver.VACTUAL(OPEN_VELOCITY);
+}
+
+static void btn2SingleClickCb(void *button_handle, void *usr_data) {
+  Serial.println("Button single click");
+  driver.VACTUAL(CLOSE_VELOCITY);
+}
+
+
 void setup() {
   Serial.begin(115200);
   Serial1.begin(115200, SERIAL_8N1, RX_PIN, TX_PIN);  // ESP32 can use any pins to Serial
@@ -87,8 +94,13 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(STALLGUARD_PIN), stalled_position, RISING);
   attachInterrupt(digitalPinToInterrupt(INDEX_PIN), index_interrupt, RISING);
 
-  driver.begin();  // Start all the UART communications functions behind the scenes
+  Button btn1 = Button(BUTTON_1_PIN, false);    
+  Button btn2 = Button(BUTTON_2_PIN, false);  
 
+  btn1.attachSingleClickEventCb(&btn1SingleClickCb, NULL);
+  btn2.attachSingleClickEventCb(&btn2SingleClickCb, NULL);
+
+  driver.begin();  // Start all the UART communications functions behind the scenes
 
   /* General Registers */
   driver.I_scale_analog(false);
@@ -107,7 +119,7 @@ void setup() {
   driver.ottrim(0);
 
   // Velocity Dependent Control
-  driver.irun(15);       // Max current. Based on 0.11 Rsense resistors
+  driver.irun(15);  // Max current. Based on 0.11 Rsense resistors
   driver.ihold(0);
   driver.iholddelay(1);  // Set I_HOLD_DELAY to 1 to 15 for smooth standstill current decay
   driver.TPOWERDOWN(20);
@@ -140,9 +152,7 @@ void setup() {
   Serial.println("Setup Complete");
 
   driver.VACTUAL(CLOSE_VELOCITY);
-
 }
-
 
 void loop() {
   driver.VACTUAL(CLOSE_VELOCITY);
