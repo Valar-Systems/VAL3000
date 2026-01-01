@@ -6187,7 +6187,7 @@
 		)
 		(uuid "aa260469-694d-4859-8b41-bb5d6b8bf3d8")
 	)
-	(text "Switch"
+	(text "End stops"
 		(exclude_from_sim no)
 		(at 314.96 128.524 0)
 		(effects
@@ -6230,6 +6230,66 @@
 			(justify left bottom)
 		)
 		(uuid "f958c1c5-653f-4670-b37c-431c523f8494")
+	)
+	(text_box "The 0R resistors can be removed if the STEP/DIR connection to the TMC2209 is not required. It is not recommended to use it anyways, and use the built-in pulse generator."
+		(exclude_from_sim no)
+		(at 320.04 403.86 0)
+		(size 31.75 17.78)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "1e0a3c63-a055-4112-9bd2-437935861d3a")
+	)
+	(text_box "Only the footprint has been added to the VAL3000, but the encoder has not. It can be easily soldered if required."
+		(exclude_from_sim no)
+		(at 363.22 182.88 0)
+		(size 31.75 10.16)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "92dd148d-cecc-489a-936c-5e3ffea28503")
+	)
+	(text_box "Two GPIOs are exposed, primarily as end stops. However, they can be used for anything.\nIt's recommended to use the ESP32's internal pullup resistors with the endstops."
+		(exclude_from_sim no)
+		(at 283.21 176.53 0)
+		(size 31.75 17.78)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "a4f40c5b-cde2-4963-8155-5cbc45f78a63")
 	)
 	(junction
 		(at 238.76 354.33)
@@ -6605,7 +6665,7 @@
 	)
 	(wire
 		(pts
-			(xy 326.39 171.45) (xy 326.39 176.53)
+			(xy 326.39 158.75) (xy 326.39 163.83)
 		)
 		(stroke
 			(width 0)
@@ -8255,7 +8315,7 @@
 	)
 	(wire
 		(pts
-			(xy 328.93 149.86) (xy 328.93 157.48)
+			(xy 328.93 137.16) (xy 328.93 144.78)
 		)
 		(stroke
 			(width 0)
@@ -8795,7 +8855,7 @@
 	)
 	(wire
 		(pts
-			(xy 321.31 147.32) (xy 328.93 147.32)
+			(xy 321.31 134.62) (xy 328.93 134.62)
 		)
 		(stroke
 			(width 0)
@@ -9265,7 +9325,7 @@
 	)
 	(wire
 		(pts
-			(xy 321.31 171.45) (xy 326.39 171.45)
+			(xy 321.31 158.75) (xy 326.39 158.75)
 		)
 		(stroke
 			(width 0)
@@ -9335,7 +9395,7 @@
 	)
 	(wire
 		(pts
-			(xy 321.31 149.86) (xy 328.93 149.86)
+			(xy 321.31 137.16) (xy 328.93 137.16)
 		)
 		(stroke
 			(width 0)
@@ -9395,7 +9455,7 @@
 	)
 	(wire
 		(pts
-			(xy 321.31 168.91) (xy 326.39 168.91)
+			(xy 321.31 156.21) (xy 326.39 156.21)
 		)
 		(stroke
 			(width 0)
@@ -9735,7 +9795,7 @@
 	)
 	(global_label "USER_3{slash}END_1"
 		(shape input)
-		(at 326.39 168.91 0)
+		(at 326.39 156.21 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -9745,7 +9805,7 @@
 		)
 		(uuid "6f1c7c10-3e73-4be8-ade0-65a607c31889")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 343.7684 168.91 0)
+			(at 343.7684 156.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9867,7 +9927,7 @@
 	)
 	(global_label "USER_4{slash}END_2"
 		(shape input)
-		(at 328.93 147.32 0)
+		(at 328.93 134.62 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -9877,7 +9937,7 @@
 		)
 		(uuid "7fa311ac-c7c3-41cc-ba04-62fafd715c90")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 346.3084 147.32 0)
+			(at 346.3084 134.62 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18156,7 +18216,7 @@
 	)
 	(symbol
 		(lib_id "SparkFun-PowerSymbol:GND")
-		(at 328.93 157.48 0)
+		(at 328.93 144.78 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -18164,7 +18224,7 @@
 		(dnp no)
 		(uuid "89539135-8cc5-4a1c-a464-f332a1b0f9c7")
 		(property "Reference" "#PWR029"
-			(at 328.93 163.83 0)
+			(at 328.93 151.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18173,7 +18233,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 328.93 161.29 0)
+			(at 328.93 148.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18181,7 +18241,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 328.93 157.48 0)
+			(at 328.93 144.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18190,7 +18250,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 328.93 157.48 0)
+			(at 328.93 144.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18199,7 +18259,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 328.93 157.48 0)
+			(at 328.93 144.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23029,7 +23089,7 @@
 	)
 	(symbol
 		(lib_id "2025-11-27_21-36-42:OSTVN02A150")
-		(at 321.31 147.32 0)
+		(at 321.31 134.62 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -23038,7 +23098,7 @@
 		(dnp no)
 		(uuid "eca76757-3884-47ae-9bc8-27b86ce87450")
 		(property "Reference" "J5"
-			(at 312.42 157.48 0)
+			(at 312.42 144.78 0)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -23046,7 +23106,7 @@
 			)
 		)
 		(property "Value" "OSTVN02A150"
-			(at 312.42 154.94 0)
+			(at 312.42 142.24 0)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -23054,7 +23114,7 @@
 			)
 		)
 		(property "Footprint" "footprints:CONN_OSTVN02A150_OST"
-			(at 321.31 147.32 0)
+			(at 321.31 134.62 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23064,7 +23124,7 @@
 			)
 		)
 		(property "Datasheet" "OSTVN02A150"
-			(at 321.31 147.32 0)
+			(at 321.31 134.62 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23074,7 +23134,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 321.31 147.32 0)
+			(at 321.31 134.62 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23368,7 +23428,7 @@
 	)
 	(symbol
 		(lib_id "SparkFun-PowerSymbol:GND")
-		(at 326.39 176.53 0)
+		(at 326.39 163.83 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -23376,7 +23436,7 @@
 		(dnp no)
 		(uuid "edd6ef29-284f-4688-a51f-731c3b120962")
 		(property "Reference" "#PWR01"
-			(at 326.39 182.88 0)
+			(at 326.39 170.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23385,7 +23445,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 326.39 180.34 0)
+			(at 326.39 167.64 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23393,7 +23453,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 326.39 176.53 0)
+			(at 326.39 163.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23402,7 +23462,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 326.39 176.53 0)
+			(at 326.39 163.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23411,7 +23471,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 326.39 176.53 0)
+			(at 326.39 163.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23931,7 +23991,7 @@
 	)
 	(symbol
 		(lib_id "2025-11-27_21-36-42:OSTVN02A150")
-		(at 321.31 171.45 180)
+		(at 321.31 158.75 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
@@ -23940,7 +24000,7 @@
 		(fields_autoplaced yes)
 		(uuid "fa220ec0-18e7-4626-b6a0-e8be8accc2c3")
 		(property "Reference" "J6"
-			(at 312.42 161.29 0)
+			(at 312.42 148.59 0)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -23948,7 +24008,7 @@
 			)
 		)
 		(property "Value" "OSTVN02A150"
-			(at 312.42 163.83 0)
+			(at 312.42 151.13 0)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -23956,7 +24016,7 @@
 			)
 		)
 		(property "Footprint" "footprints:CONN_OSTVN02A150_OST"
-			(at 321.31 171.45 0)
+			(at 321.31 158.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23966,7 +24026,7 @@
 			)
 		)
 		(property "Datasheet" "OSTVN02A150"
-			(at 321.31 171.45 0)
+			(at 321.31 158.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23976,7 +24036,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 321.31 171.45 0)
+			(at 321.31 158.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
