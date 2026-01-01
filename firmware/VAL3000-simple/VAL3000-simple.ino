@@ -11,6 +11,12 @@
 #define BUTTON_2_PIN GPIO_NUM_4
 #define BUTTON_WIFI_PIN GPIO_NUM_7
 
+#define BUTTON_WIFI_PIN GPIO_NUM_20
+#define BUTTON_WIFI_PIN GPIO_NUM_21
+
+#define END1_PIN GPIO_NUM_10
+#define END2_PIN GPIO_NUM_2
+
 #define R_SENSE 0.11f     // R_SENSE for current calc.
 #define DRIVER_ADDRESS 0  // TMC2209 Driver address according to MS1 and MS2
 
@@ -94,8 +100,8 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(STALLGUARD_PIN), stalled_position, RISING);
   attachInterrupt(digitalPinToInterrupt(INDEX_PIN), index_interrupt, RISING);
 
-  Button btn1 = Button(BUTTON_1_PIN, false);    
-  Button btn2 = Button(BUTTON_2_PIN, false);  
+  Button btn1 = Button(BUTTON_1_PIN, false);
+  Button btn2 = Button(BUTTON_2_PIN, false);
 
   btn1.attachSingleClickEventCb(&btn1SingleClickCb, NULL);
   btn2.attachSingleClickEventCb(&btn2SingleClickCb, NULL);
@@ -155,8 +161,12 @@ void setup() {
 }
 
 void loop() {
-  driver.VACTUAL(CLOSE_VELOCITY);
-  delay(4000);
-  driver.VACTUAL(OPEN_VELOCITY);
-  delay(4000);
+
+  if (!digitalRead(BUTTON_1_PIN)) {
+    Serial.println("BUTTON 1");
+  }
+  // driver.VACTUAL(CLOSE_VELOCITY);
+  // delay(4000);
+  // driver.VACTUAL(OPEN_VELOCITY);
+  // delay(4000);
 }
