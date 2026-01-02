@@ -5,7 +5,9 @@ Wireless Stepper Motor Driver
 #### [Purchase it here](https://valarsystems.com/products/val3000). If sold out, PLEASE sign up to the "Notify me when available" button, that's the only way we know to make more. If you don't sign up, we won't make more!
 
 <div style="text-align: center;">
-<img src="/docs/media/7.jpg" width="600">
+<img src="/docs/media/2.jpg" width="600">
+</div>
+<img src="/docs/media/1.jpg" width="600">
 </div>
 <img src="/docs/media/6.jpg" width="600">
 
