@@ -37,9 +37,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 1.0,
-          "height": 1.508,
-          "width": 1.508
+          "drill": 1.2,
+          "height": 2.0,
+          "width": 2.0
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -561,7 +561,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "G:/My Drive/Products/VAL-3000/PCB/12-3-25/",
+      "plot": "G:/My Drive/Products/VAL-3000/PCB/1-1-25/Gerber/",
       "pos_files": "G:/My Drive/Products/VAL-3000/PCB/12-3-25/",
       "specctra_dsn": "",
       "step": "MorningRope_3D.step",
@@ -846,7 +846,7 @@
     },
     "net_format_name": "",
     "page_layout_descr_file": "",
-    "plot_directory": "C:/Users/DanielFrenkel/Downloads/",
+    "plot_directory": "C:/Github/VAL3000/docs/",
     "space_save_all_events": true,
     "spice_current_sheet_as_root": false,
     "spice_external_command": "spice \"%I\"",
