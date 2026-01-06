@@ -1,5 +1,4 @@
 #include <TMCStepper.h>
-#include <Button.h>
 
 #define STEP_PIN 10
 #define ENABLE_PIN 8
@@ -69,17 +68,6 @@ void IRAM_ATTR index_interrupt(void) {
   }
 }
 
-static void btn1SingleClickCb(void *button_handle, void *usr_data) {
-  Serial.println("Button single click");
-  driver.VACTUAL(OPEN_VELOCITY);
-}
-
-static void btn2SingleClickCb(void *button_handle, void *usr_data) {
-  Serial.println("Button single click");
-  driver.VACTUAL(CLOSE_VELOCITY);
-}
-
-
 void setup() {
   Serial.begin(115200);
   Serial1.begin(115200, SERIAL_8N1, RX_PIN, TX_PIN);  // ESP32 can use any pins to Serial
@@ -93,12 +81,6 @@ void setup() {
 
   attachInterrupt(digitalPinToInterrupt(STALLGUARD_PIN), stalled_position, RISING);
   attachInterrupt(digitalPinToInterrupt(INDEX_PIN), index_interrupt, RISING);
-
-  Button btn1 = Button(BUTTON_1_PIN, false);    
-  Button btn2 = Button(BUTTON_2_PIN, false);  
-
-  btn1.attachSingleClickEventCb(&btn1SingleClickCb, NULL);
-  btn2.attachSingleClickEventCb(&btn2SingleClickCb, NULL);
 
   driver.begin();  // Start all the UART communications functions behind the scenes
 
@@ -148,13 +130,12 @@ void setup() {
   driver.pwm_freq(1);
   //driver.pwm_grad(PWM_grad);  // Test different initial values. Use scope.
   driver.pwm_ofs(36);
-  digitalWrite(ENABLE_PIN, LOW);
-  Serial.println("Setup Complete");
 
-  driver.VACTUAL(CLOSE_VELOCITY);
+  digitalWrite(ENABLE_PIN, LOW);  // Enable the driver
 }
 
 void loop() {
+  // Spin in one direction for 4 senconds, then reverse
   driver.VACTUAL(CLOSE_VELOCITY);
   delay(4000);
   driver.VACTUAL(OPEN_VELOCITY);
