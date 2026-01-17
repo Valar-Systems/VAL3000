@@ -75,11 +75,13 @@ void IRAM_ATTR index_interrupt(void) {
   }
 }
 
+// Turns the motor in one direction
 static void btn1SingleClickCb(void *button_handle, void *usr_data) {
   Serial.println("Button single click");
   driver.VACTUAL(OPEN_VELOCITY);
 }
 
+// Turns the motor in a different direction
 static void btn2SingleClickCb(void *button_handle, void *usr_data) {
   Serial.println("Button single click");
   driver.VACTUAL(CLOSE_VELOCITY);
@@ -103,8 +105,8 @@ void setup() {
   Button btn1 = Button(BUTTON_1_PIN, false);
   Button btn2 = Button(BUTTON_2_PIN, false);
 
-  btn1.attachSingleClickEventCb(&btn1SingleClickCb, NULL);
-  btn2.attachSingleClickEventCb(&btn2SingleClickCb, NULL);
+  btn1.attachSingleClickEventCb(&btn1SingleClickCb, NULL); // Attaches button function btn1SingleClickCb
+  btn2.attachSingleClickEventCb(&btn2SingleClickCb, NULL); // Attaches button function btn2SingleClickCb
 
   driver.begin();  // Start all the UART communications functions behind the scenes
 
@@ -157,16 +159,11 @@ void setup() {
   digitalWrite(ENABLE_PIN, LOW);
   Serial.println("Setup Complete");
 
-  driver.VACTUAL(CLOSE_VELOCITY);
+  driver.VACTUAL(CLOSE_VELOCITY); // Starts the movement
 }
 
 void loop() {
 
-  if (!digitalRead(BUTTON_1_PIN)) {
-    Serial.println("BUTTON 1");
-  }
-  // driver.VACTUAL(CLOSE_VELOCITY);
-  // delay(4000);
-  // driver.VACTUAL(OPEN_VELOCITY);
-  // delay(4000);
+
+
 }
