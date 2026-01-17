@@ -1,5 +1,4 @@
 #include <TMCStepper.h>
-#include <Button.h>
 
 #define STEP_PIN 10
 #define ENABLE_PIN 8
@@ -10,12 +9,6 @@
 #define BUTTON_1_PIN GPIO_NUM_3
 #define BUTTON_2_PIN GPIO_NUM_4
 #define BUTTON_WIFI_PIN GPIO_NUM_7
-
-#define BUTTON_WIFI_PIN GPIO_NUM_20
-#define BUTTON_WIFI_PIN GPIO_NUM_21
-
-#define END1_PIN GPIO_NUM_10
-#define END2_PIN GPIO_NUM_2
 
 #define R_SENSE 0.11f     // R_SENSE for current calc.
 #define DRIVER_ADDRESS 0  // TMC2209 Driver address according to MS1 and MS2
@@ -156,8 +149,6 @@ void setup() {
   driver.pwm_freq(1);
   //driver.pwm_grad(PWM_grad);  // Test different initial values. Use scope.
   driver.pwm_ofs(36);
-  digitalWrite(ENABLE_PIN, LOW);
-  Serial.println("Setup Complete");
 
   driver.VACTUAL(CLOSE_VELOCITY); // Starts the movement
 }
