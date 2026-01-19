@@ -1,4 +1,5 @@
 #include <TMCStepper.h>
+#include <Button.h>
 
 #define STEP_PIN 10
 #define ENABLE_PIN 8
@@ -70,14 +71,19 @@ void IRAM_ATTR index_interrupt(void) {
 
 // Turns the motor in one direction
 static void btn1SingleClickCb(void *button_handle, void *usr_data) {
-  Serial.println("Button single click");
+  Serial.println("Button1 single click");
   driver.VACTUAL(OPEN_VELOCITY);
 }
 
 // Turns the motor in a different direction
 static void btn2SingleClickCb(void *button_handle, void *usr_data) {
-  Serial.println("Button single click");
+  Serial.println("Button2 single click");
   driver.VACTUAL(CLOSE_VELOCITY);
+}
+
+// Test the WiFi Reset Button
+static void btn3SingleClickCb(void *button_handle, void *usr_data) {
+  Serial.println("WiFi Reset Pressed");
 }
 
 
@@ -97,9 +103,11 @@ void setup() {
 
   Button btn1 = Button(BUTTON_1_PIN, false);
   Button btn2 = Button(BUTTON_2_PIN, false);
+  Button btn3 = Button(BUTTON_WIFI_PIN, false);
 
   btn1.attachSingleClickEventCb(&btn1SingleClickCb, NULL); // Attaches button function btn1SingleClickCb
   btn2.attachSingleClickEventCb(&btn2SingleClickCb, NULL); // Attaches button function btn2SingleClickCb
+  btn3.attachSingleClickEventCb(&btn3SingleClickCb, NULL); // Attaches button function btn2SingleClickCb
 
   driver.begin();  // Start all the UART communications functions behind the scenes
 
@@ -155,6 +163,6 @@ void setup() {
 
 void loop() {
 
-
+// Button actions are in the button functions
 
 }
