@@ -138,7 +138,7 @@
 			(mirror no)
 			(drillshape 0)
 			(scaleselection 1)
-			(outputdirectory "G:/My Drive/Products/VAL-3000/PCB/1-1-25/Gerber/")
+			(outputdirectory "G:/My Drive/Products/VAL-3000/PCB/2-9-26/gerber/")
 		)
 	)
 	(net 0 "")
