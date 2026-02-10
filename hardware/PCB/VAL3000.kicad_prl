@@ -42,7 +42,6 @@
       "drc_errors",
       "bitmaps",
       "pads",
-      "zones",
       "drc_exclusions",
       "locked_item_shadows",
       "conflict_shadows",
