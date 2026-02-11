@@ -1,4 +1,4 @@
-26776701546297714
+26767934639794891
 691137710002
 691137710002
 
@@ -41,6 +41,27 @@ FPC-SMD_24P-L17.5-W5.4-P0.50
 0
 26
 26
+AS5600L-ASOM_AMS
+AS5600L-ASOM_AMS
+
+AS5600L-ASOM 
+0
+8
+8
+AS5600L-ASOM_AMS
+AS5600L-ASOM_AMS-L
+
+AS5600L-ASOM 
+0
+8
+8
+AS5600L-ASOM_AMS
+AS5600L-ASOM_AMS-M
+
+AS5600L-ASOM 
+0
+8
+8
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -55,13 +76,6 @@ audio belton reverb
 0
 7
 7
-B4B-XH-A
-JST_B4B-XH-A
-
-
-0
-4
-4
 B0505S-1W
 PWRM-TH_BXXXXS-1W
 
@@ -69,6 +83,13 @@ PWRM-TH_BXXXXS-1W
 0
 4
 4
+BSMD1812-200-30V
+F1812
+
+
+0
+2
+2
 Battery
 BatteryClip_Keystone_54_D16-19mm
 Battery clip for batteries with a diameter between 16-19 mm: https://www.keyelco.com/product.cfm/product_id/826
@@ -59457,13 +59478,6 @@ ceramic
 0
 3
 3
-DC-005
-DC-IN-TH_DC-005-5.5-2.0
-
-
-0
-3
-3
 Diode_SMD
 D_0201_0603Metric
 Diode SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf), generated with kicad-footprint-generator
@@ -61487,13 +61501,6 @@ One digit LED 7 segment SA39-11 SC39-11 SA39-12 SC39-12
 0
 10
 10
-ESD9L3-3ST5G
-SOD-923_L0.8-W0.6-LS1.0-RD
-
-
-0
-2
-2
 ESP32_S3_WROOM_1U_N8R8
 XCVR_ESP32-S3-WROOM-1U-N8R8
 
@@ -94933,13 +94940,6 @@ WiFi IEEE802.11 b/g/n
 0
 44
 44
-RT9080-33GJ5
-TSOT-23-5_L2.9-W1.6-P0.95-LS2.8-BL
-
-
-0
-5
-5
 Relay_SMD
 Relay_2P2T_10x6mm_TE_IMxxG
 Signal Relay, 10x6mm, 2 Form C, Gull Wings, https://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Data+Sheet%7F108-98001%7FZ.1%7Fpdf%7FEnglish%7FENG_DS_108-98001_Z.1.pdf
@@ -97264,20 +97264,6 @@ rotary encoder illuminated switch vertical
 0
 9
 8
-SLW-864587-2A-RA-N-D
-SW_SLW-864587-2A-RA-N-D
-
-
-0
-5
-5
-SWPA3015S3R3MT
-IND-SMD_L3.0-W3.0_FNR30XXS
-
-
-0
-2
-2
 Sensor
 ASAIR_AM2302_P2.54mm_Lead2.75mm_TabDown
 Temperature and humidity module, http://akizukidenshi.com/download/ds/aosong/AM2302.pdf
@@ -99469,20 +99455,6 @@ Logo WEEE
 0
 0
 0
-TC-6615-4.5-160G
-KEY-TH_TC-6615-4.5-160G
-
-
-0
-4
-4
-TMC2209-LA-T
-QFN50P500X500X90-29N
-
-
-0
-29
-29
 TS-1088-AR02016
 SW-SMD_L3.9-W3.0-P4.45
 
@@ -105783,13 +105755,6 @@ USB-C-SMD_TYPE-C-6PIN-2MD-073
 0
 18
 14
-UWT1H221MNL1GS
-CAP-SMD_BD10.0-L10.3-W10.3-LS11.3-FD
-
-
-0
-2
-2
 Valve
 Valve_ECC-83-1
 Valve ECC-83-1 round pins
@@ -106589,9 +106554,9 @@ XC6206P282MR-G
 3
 3
 footprints
-CONN_OSTVN02A150_OST
+CONN_OSTVN04A150_OST
 
-OSTVN02A150 
+OSTVN04A150 
 0
-2
-2
+4
+4
