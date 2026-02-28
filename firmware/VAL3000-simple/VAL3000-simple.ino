@@ -11,7 +11,7 @@
 #define BUTTON_2_PIN GPIO_NUM_4
 #define BUTTON_WIFI_PIN GPIO_NUM_7
 
-#define R_SENSE 0.11f     // R_SENSE for current calc.
+#define R_SENSE 0.10f     // R_SENSE for current calc.
 #define DRIVER_ADDRESS 0  // TMC2209 Driver address according to MS1 and MS2
 
 // ## Speed
