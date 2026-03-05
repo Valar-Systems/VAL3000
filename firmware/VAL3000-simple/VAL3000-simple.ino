@@ -1,3 +1,8 @@
+/****LIBRARIES REQUIRED******
+* TMCStepper: https://github.com/teemuatlut/TMCStepper
+* ESP32_Button: https://github.com/esp-arduino-libs/ESP32_Button
+*/
+
 #include <TMCStepper.h>
 #include <Button.h>
 
