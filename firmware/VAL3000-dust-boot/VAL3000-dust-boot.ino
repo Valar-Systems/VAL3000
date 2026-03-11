@@ -12,6 +12,8 @@ On 2 being pressed or the input from the controller going off spin the motor in 
 
 #include <TMCStepper.h>
 #include <Button.h>
+#include <Preferences.h>
+#include "memory.h"
 
 #define STEP_PIN 10
 #define ENABLE_PIN 8
@@ -39,7 +41,7 @@ On 2 being pressed or the input from the controller going off spin the motor in 
 bool stalled_motor = false;
 bool motor_moving = false;
 bool is_moving = false;
-bool is_closing = false;
+bool is_lowering = false;
 bool move_to_max = false;
 
 uint32_t target_position;
@@ -66,11 +68,11 @@ void IRAM_ATTR stalled_position() {
 // ## Track Steps
 // When using the pulse generator, the TMC2209 will tell us each time a step has been taken by pulsing the INDEX pin. We can create a tracker to add or subract steps from the tracker
 // The index output gives one pulse per electrical rotation, i.e., one pulse per each four fullsteps. I
-// The is_closing variable keeps track of which direction the motor is spinning, this way we know whether to add or subract from the position.
+// The is_lowering variable keeps track of which direction the motor is spinning, this way we know whether to add or subract from the position.
 
 void IRAM_ATTR index_interrupt(void) {
 
-  if (is_closing == true) {
+  if (is_lowering == true) {
     motor_position++;
   } else {
     motor_position--;
@@ -80,6 +82,9 @@ void IRAM_ATTR index_interrupt(void) {
 // Turns the motor in one direction
 static void btn1SingleClickCb(void *button_handle, void *usr_data) {
   Serial.println("Boot Down");
+
+  motor_position = 0; //Resets the motor position to 0
+  target_position = 1000;
   vTaskResume(position_watcher_task_handler);
   delay(100);
   enable_driver();
@@ -89,6 +94,9 @@ static void btn1SingleClickCb(void *button_handle, void *usr_data) {
 // Turns the motor in a different direction
 static void btn2SingleClickCb(void *button_handle, void *usr_data) {
   Serial.println("Boot Up");
+
+  target_position = 0;
+
   vTaskResume(position_watcher_task_handler);
   delay(100);
   enable_driver();
