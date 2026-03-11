@@ -43,6 +43,7 @@ bool motor_moving = false;
 bool is_moving = false;
 bool is_lowering = false;
 bool move_to_max = false;
+bool set_distance = false;
 
 uint32_t target_position;
 int32_t motor_position;
@@ -79,12 +80,27 @@ void IRAM_ATTR index_interrupt(void) {
   }
 }
 
-// Turns the motor in one direction
+// Lower the boot to the maximum_motor_position
 static void btn1SingleClickCb(void *button_handle, void *usr_data) {
   Serial.println("Boot Down");
 
-  motor_position = 0; //Resets the motor position to 0
-  target_position = 1000;
+  set_distance = false;
+  motor_position = 0;  //Resets the motor position to 0
+  target_position = maximum_motor_position;
+  vTaskResume(position_watcher_task_handler);
+  delay(100);
+  enable_driver();
+  driver.VACTUAL(OPEN_VELOCITY);
+}
+
+// Lower the boot until it stalls
+static void btn1LongPressCb(void *button_handle, void *usr_data) {
+  Serial.println("Boot Down");
+
+  set_distance = true;
+
+  motor_position = 0;       //Resets the motor position to 0
+  target_position = 20000;  // Random high number
   vTaskResume(position_watcher_task_handler);
   delay(100);
   enable_driver();
@@ -121,9 +137,10 @@ void setup() {
   Button btn1 = Button(BUTTON_1_PIN, false);
   Button btn2 = Button(BUTTON_2_PIN, false);
 
+  btn1.attachSingleClickEventCb(&btn1SingleClickCb, NULL);   // Attaches button function btn1SingleClickCb
+  btn1.attachLongPressStartEventCb(&btn1LongPressCb, NULL);  // Attaches button function btn1LongPressCb
+  btn2.attachSingleClickEventCb(&btn2SingleClickCb, NULL);   // Attaches button function btn2SingleClickCb
 
-  btn1.attachSingleClickEventCb(&btn1SingleClickCb, NULL);  // Attaches button function btn1SingleClickCb
-  btn2.attachSingleClickEventCb(&btn2SingleClickCb, NULL);  // Attaches button function btn2SingleClickCb
 
   driver.begin();  // Start all the UART communications functions behind the scenes
 
@@ -239,13 +256,19 @@ void position_watcher_task(void *parameter) {
       }
 
       // Check for stall condition
-      if (stall_flag) {
-        stop();
-        stall_flag = false;
+      if (is_lowering) {
+        if (stall_flag) {
+          stop();
+          stall_flag = false;
+          if (set_distance) {
+            maximum_motor_position = motor_position;
+            //Need to save to preferences
+          }
 
-        printf("position_watcher: Stall detected\n");
+          printf("position_watcher: Stall detected\n");
 
-        goto notify_and_suspend;
+          goto notify_and_suspend;
+        }
       }
 
       // Check if target position reached
@@ -271,7 +294,6 @@ void position_watcher_task(void *parameter) {
 
       // Periodic position logging
       Serial.println(motor_position);
-
     }
 
     delay(20);
