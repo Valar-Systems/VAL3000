@@ -3,6 +3,13 @@
 * ESP32_Button: https://github.com/esp-arduino-libs/ESP32_Button
 */
 
+// ACTIONS
+/*
+On boot up do nothing
+On button press 1 or input from the CNC controller spin the motor until it hits a limit switch, I assume I can use the 2nd io on the board for this. Hold the motor at the limit switch. 
+On 2 being pressed or the input from the controller going off spin the motor in the opposite direction for the same amount of time it took to reach the limit switch. 
+*/
+
 #include <TMCStepper.h>
 #include <Button.h>
 
@@ -40,6 +47,9 @@ int32_t motor_position;
 uint32_t maximum_motor_position;
 uint8_t target_percent;
 
+// FreeRTOS task handle for position monitoring
+TaskHandle_t position_watcher_task_handler = NULL;
+
 // We communicate with the TMC2209 over UART
 // But the Arduino UNO only has one Serial port which is connected to the Serial Monitor
 // We can use software serial on the UNO, and hardware serial on the ESP32 or Mega 2560
@@ -65,30 +75,24 @@ void IRAM_ATTR index_interrupt(void) {
   } else {
     motor_position--;
   }
-
-  // Ensure motor position stays within bounds
-  if (motor_position < 0) {
-    motor_position = 0;
-  } else if (motor_position > maximum_motor_position) {
-    motor_position = maximum_motor_position;
-  }
 }
 
 // Turns the motor in one direction
 static void btn1SingleClickCb(void *button_handle, void *usr_data) {
-  Serial.println("Button1 single click");
+  Serial.println("Boot Down");
+  vTaskResume(position_watcher_task_handler);
+  delay(100);
+  enable_driver();
   driver.VACTUAL(OPEN_VELOCITY);
 }
 
 // Turns the motor in a different direction
 static void btn2SingleClickCb(void *button_handle, void *usr_data) {
-  Serial.println("Button2 single click");
+  Serial.println("Boot Up");
+  vTaskResume(position_watcher_task_handler);
+  delay(100);
+  enable_driver();
   driver.VACTUAL(CLOSE_VELOCITY);
-}
-
-// Test the WiFi Reset Button
-static void btn3SingleClickCb(void *button_handle, void *usr_data) {
-  Serial.println("WiFi Reset Pressed");
 }
 
 
@@ -108,11 +112,10 @@ void setup() {
 
   Button btn1 = Button(BUTTON_1_PIN, false);
   Button btn2 = Button(BUTTON_2_PIN, false);
-  Button btn3 = Button(BUTTON_WIFI_PIN, false);
 
-  btn1.attachSingleClickEventCb(&btn1SingleClickCb, NULL); // Attaches button function btn1SingleClickCb
-  btn2.attachSingleClickEventCb(&btn2SingleClickCb, NULL); // Attaches button function btn2SingleClickCb
-  btn3.attachSingleClickEventCb(&btn3SingleClickCb, NULL); // Attaches button function btn2SingleClickCb
+
+  btn1.attachSingleClickEventCb(&btn1SingleClickCb, NULL);  // Attaches button function btn1SingleClickCb
+  btn2.attachSingleClickEventCb(&btn2SingleClickCb, NULL);  // Attaches button function btn2SingleClickCb
 
   driver.begin();  // Start all the UART communications functions behind the scenes
 
@@ -162,12 +165,124 @@ void setup() {
   driver.pwm_freq(1);
   //driver.pwm_grad(PWM_grad);  // Test different initial values. Use scope.
   driver.pwm_ofs(36);
-
-  driver.VACTUAL(CLOSE_VELOCITY); // Starts the movement
 }
 
 void loop() {
 
-// Button actions are in the button functions
+  // Button actions are in the button functions
+}
 
+int getMotorPosition() {
+
+  return motor_position;
+}
+
+/* Enables power stage of TMC */
+void enable_driver() {
+  digitalWrite(ENABLE_PIN, 0);
+}
+
+/* Disabled power stage of TMC */
+void disable_driver() {
+  digitalWrite(ENABLE_PIN, 1);
+}
+
+/* Stops motor */
+void stop() {
+  disable_driver();
+  driver.VACTUAL(STOP_MOTOR_VELOCITY);
+#ifdef LOGGING_ENABLED
+  printf("stop(): Motor stopped\n");
+#endif
+}
+
+// ========================================
+// POSITION WATCHER TASK
+// ========================================
+
+/**
+ * @brief FreeRTOS task that monitors motor position and stops at target
+ *
+ * This task runs continuously, suspended when not needed. It monitors the motor
+ * position and stops movement when target is reached or stop conditions occur.
+ */
+void position_watcher_task(void *parameter) {
+
+  Serial.println("position_watcher_task CREATED");
+
+  while (true) {
+    vTaskSuspend(NULL);
+
+    Serial.print("is_moving: ");
+    Serial.println(is_moving);
+
+    while (is_moving) {
+      loop_counter++;
+
+      // Check if stop button was pressed
+      if (stop_flag) {
+        stop();
+        stop_flag = false;
+
+        printf("position_watcher: Stop requested\n");
+
+        delay(1000);
+        goto notify_and_suspend;
+      }
+
+      // Check for stall condition
+      if (stall_flag) {
+        stop();
+        stall_flag = false;
+
+        printf("position_watcher: Stall detected\n");
+
+        goto notify_and_suspend;
+      }
+
+      // Check if target position reached
+      if (is_lowering) {
+        if (motor_position >= target_position) {
+
+          printf("position_watcher: Target reached (closing) - pos: %u, target: %u\n",
+                 (unsigned int)motor_position, (unsigned int)target_position);
+
+          stop();
+          goto notify_and_suspend;
+        }
+      } else {
+        if (motor_position <= target_position) {
+
+          printf("position_watcher: Target reached (opening) - pos: %u, target: %u\n",
+                 (unsigned int)motor_position, (unsigned int)target_position);
+
+          stop();
+          goto notify_and_suspend;
+        }
+      }
+
+      // Periodic position logging
+      Serial.println(motor_position);
+
+    }
+
+    delay(20);
+  }
+
+notify_and_suspend:
+
+  Serial.println("Movement complete - updating state");
+
+  is_moving = false;
+
+  // Calculate current lift percentage (inverted for Matter standard: 100% = closed, 0% = open)
+  int currentLiftPercent = (((float)motor_position / (float)maximum_motor_position) * 100.0);
+
+  printf("Final state - Position: %lu, Lift%%: %lu, Target: %lu, Max: %lu\n",
+         motor_position, currentLiftPercent, target_position, maximum_motor_position);
+
+  // Save state to preferences
+  preferences.putUChar(PREF_LIFT_PERCENT, currentLiftPercent);
+  preferences.putInt(PREF_MOTOR_POS, motor_position);
+}
 }
