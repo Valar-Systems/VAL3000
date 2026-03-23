@@ -3,6 +3,13 @@
 * ESP32_Button: https://github.com/esp-arduino-libs/ESP32_Button
 */
 
+/****** SIMPLE FINITE STATE MACHINE*******/
+/* The following code is a simple finite state machine.
+*  Press the buttons to start and stop the motor.
+*  The states will change between IDLE, OPENING, and CLOSING.
+*/ 
+
+
 #include <TMCStepper.h>
 #include <Button.h>
 
@@ -25,20 +32,29 @@
 // It means 200 x 16 = 3200 steps per revolution. To set the speed to rotate one revolution per seconds, we would set the value below to 3200.
 // µstep velocity v[Hz] = VACTUAL[2209] * 0.715Hz
 //Change these values to get different speeds
-#define CLOSE_VELOCITY 1000
-#define OPEN_VELOCITY -1000
-#define STOP_MOTOR_VELOCITY 0
+#define CLOSING_VELOCITY 1000
+#define OPENING_VELOCITY -1000
+#define IDLE_VELOCITY 0
 
 bool stalled_motor = false;
-bool motor_moving = false;
-bool is_moving = false;
-bool is_closing = false;
 bool move_to_max = false;
 
 uint32_t target_position;
 int32_t motor_position;
 uint32_t maximum_motor_position;
 uint8_t target_percent;
+
+bool Button1SingleClick = false;
+bool Button2SingleClick = false;
+
+// Define the states using an enum for readability
+enum MotorState {
+  IDLE,
+  OPENING,
+  CLOSING
+};
+
+MotorState currentState = IDLE;  // Initial state
 
 // We communicate with the TMC2209 over UART
 // But the Arduino UNO only has one Serial port which is connected to the Serial Monitor
@@ -60,9 +76,9 @@ void IRAM_ATTR stalled_position() {
 
 void IRAM_ATTR index_interrupt(void) {
 
-  if (is_closing == true) {
+  if (CLOSING) {
     motor_position++;
-  } else {
+  } else if (OPENING) {
     motor_position--;
   }
 
@@ -77,18 +93,18 @@ void IRAM_ATTR index_interrupt(void) {
 // Turns the motor in one direction
 static void btn1SingleClickCb(void *button_handle, void *usr_data) {
   Serial.println("Button1 single click");
-  driver.VACTUAL(OPEN_VELOCITY);
+  Button1SingleClick = true;
 }
 
 // Turns the motor in a different direction
 static void btn2SingleClickCb(void *button_handle, void *usr_data) {
   Serial.println("Button2 single click");
-  driver.VACTUAL(CLOSE_VELOCITY);
+  Button2SingleClick = true;
 }
 
-// Test the WiFi Reset Button
+// Test the Reset Button
 static void btn3SingleClickCb(void *button_handle, void *usr_data) {
-  Serial.println("WiFi Reset Pressed");
+  Serial.println("Button3 single click");
 }
 
 
@@ -110,9 +126,9 @@ void setup() {
   Button btn2 = Button(BUTTON_2_PIN, false);
   Button btn3 = Button(BUTTON_WIFI_PIN, false);
 
-  btn1.attachSingleClickEventCb(&btn1SingleClickCb, NULL); // Attaches button function btn1SingleClickCb
-  btn2.attachSingleClickEventCb(&btn2SingleClickCb, NULL); // Attaches button function btn2SingleClickCb
-  btn3.attachSingleClickEventCb(&btn3SingleClickCb, NULL); // Attaches button function btn2SingleClickCb
+  btn1.attachSingleClickEventCb(&btn1SingleClickCb, NULL);  // Attaches button function btn1SingleClickCb
+  btn2.attachSingleClickEventCb(&btn2SingleClickCb, NULL);  // Attaches button function btn2SingleClickCb
+  btn3.attachSingleClickEventCb(&btn3SingleClickCb, NULL);  // Attaches button function btn2SingleClickCb
 
   driver.begin();  // Start all the UART communications functions behind the scenes
 
@@ -133,7 +149,7 @@ void setup() {
   driver.ottrim(0);
 
   // Velocity Dependent Control
-  driver.irun(31);  // Max current. Based on 0.11 Rsense resistors
+  driver.irun(20);  // set to 31 for max current. Driver will get HOT without active cooling
   driver.ihold(0);
   driver.iholddelay(1);  // Set I_HOLD_DELAY to 1 to 15 for smooth standstill current decay
   driver.TPOWERDOWN(20);
@@ -163,11 +179,55 @@ void setup() {
   //driver.pwm_grad(PWM_grad);  // Test different initial values. Use scope.
   driver.pwm_ofs(36);
 
-  driver.VACTUAL(CLOSE_VELOCITY); // Starts the movement
+  //driver.VACTUAL(CLOSE_VELOCITY); // Starts the movement
 }
 
 void loop() {
+  // The main switch-case structure manages the FSM
+  switch (currentState) {
+    case IDLE:
+      // Stay in IDLE state unless the start button is pressed
+      if (Button1SingleClick) {
+        Button1SingleClick = false; // Reset flag to false
+        currentState = OPENING;  // Transition to opening
+        Serial.println("Starting Opening movement");
+      } else if (Button2SingleClick) {
+        Button2SingleClick = false; // Reset flag to false
+        currentState = CLOSING;  // Transition to closing
+        Serial.println("Starting closing movement");
+      }
+      break;
 
-// Button actions are in the button functions
+    case OPENING:
+      // Action: Run motor Opening
+      digitalWrite(ENABLE_PIN, LOW);  // Enable motor
+      driver.VACTUAL(OPENING_VELOCITY);
 
+      // Transition condition: if CW limit switch is hit
+      if (Button1SingleClick) {
+        Button1SingleClick = false; // Reset flag to false
+        currentState = IDLE;
+        driver.VACTUAL(IDLE_VELOCITY);
+        digitalWrite(ENABLE_PIN, HIGH);  // Disable motor immediately
+        Serial.println("Stopping, waiting...");
+        delay(100);
+      }
+      break;
+
+    case CLOSING:
+      // Action: Run motor Closing
+      digitalWrite(ENABLE_PIN, LOW);  // Enable motor
+      driver.VACTUAL(CLOSING_VELOCITY);
+
+      // Transition condition: if CCW limit switch is hit
+      if (Button2SingleClick) {
+        Button2SingleClick = false; // Reset flag to false
+        currentState = IDLE;
+        driver.VACTUAL(IDLE_VELOCITY);
+        digitalWrite(ENABLE_PIN, HIGH);  // Disable motor immediately
+        Serial.println("Stopping, waiting...");
+        delay(100);
+      }
+      break;
+  }
 }
