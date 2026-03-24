@@ -46,6 +46,7 @@ uint8_t target_percent;
 
 bool Button1SingleClick = false;
 bool Button2SingleClick = false;
+bool Button3SingleClick = false;
 
 // Define the states using an enum for readability
 enum MotorState {
@@ -105,6 +106,7 @@ static void btn2SingleClickCb(void *button_handle, void *usr_data) {
 // Test the Reset Button
 static void btn3SingleClickCb(void *button_handle, void *usr_data) {
   Serial.println("Button3 single click");
+  Button3SingleClick = true;
 }
 
 
@@ -204,8 +206,10 @@ void loop() {
       driver.VACTUAL(OPENING_VELOCITY);
 
       // Transition condition: if CW limit switch is hit
-      if (Button1SingleClick) {
+      if (Button1SingleClick || Button2SingleClick || Button3SingleClick) {
         Button1SingleClick = false; // Reset flag to false
+        Button2SingleClick = false; // Reset flag to false
+        Button3SingleClick = false; // Reset flag to false
         currentState = IDLE;
         driver.VACTUAL(IDLE_VELOCITY);
         digitalWrite(ENABLE_PIN, HIGH);  // Disable motor immediately
@@ -220,8 +224,10 @@ void loop() {
       driver.VACTUAL(CLOSING_VELOCITY);
 
       // Transition condition: if CCW limit switch is hit
-      if (Button2SingleClick) {
+      if (Button1SingleClick || Button2SingleClick || Button3SingleClick) {
+        Button1SingleClick = false; // Reset flag to false
         Button2SingleClick = false; // Reset flag to false
+        Button3SingleClick = false; // Reset flag to false
         currentState = IDLE;
         driver.VACTUAL(IDLE_VELOCITY);
         digitalWrite(ENABLE_PIN, HIGH);  // Disable motor immediately
