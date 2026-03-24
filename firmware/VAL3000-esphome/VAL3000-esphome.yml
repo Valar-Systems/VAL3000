@@ -1,0 +1,311 @@
+external_components:
+  - source: github://slimcdk/esphome-custom-components
+    components: [tmc2209_hub, tmc2209, stepper]
+
+globals:
+  - id: global_irun
+    type: int
+    restore_value: yes
+    initial_value: '25'
+  - id: global_max_speed
+    type: int
+    restore_value: yes
+    initial_value: '1500'
+  - id: global_acceleration
+    type: int
+    restore_value: yes
+    initial_value: '1500'
+  - id: global_sgthrs
+    type: int
+    restore_value: yes
+    initial_value: '100'
+
+  - id: global_distance_cm
+    type: int
+    restore_value: yes
+    initial_value: '80'
+
+  - id: global_distance_steps
+    type: int
+    restore_value: yes
+    initial_value: '80000'
+
+  - id: global_stepper_direction
+    type: esphome::tmc2209::ShaftDirection
+    restore_value: yes
+    initial_value: 'esphome::tmc2209::ShaftDirection::CLOCKWISE'
+
+  - id: global_distance_revolutions
+    type: float
+    restore_value: yes
+    initial_value: '21.22'   
+
+substitutions:
+  #max_distance_cm: "80" # full blinds length (in centimeters) // CHANGE TO SUIT YOUR SETUP
+  #stepper_direction: "ccw" # change to "cw" or "ccw" to change direction
+
+  gear_distance_cm: "3.7699" # Use for MK7 drive gear // The curtain will move 3.7699 cm per revolution
+  steps_per_revolution: "1600"
+  # max_distance_revs: "float(id(global_distance_cm))/${gear_distance_cm}"
+  # max_distance_steps: "${max_distance_revs}*${steps_per_revolution}" # converts cm to steps. Use this in remaining code
+
+api:
+
+ota:
+  - platform: esphome
+
+logger:
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+    # Optional manual IP
+  # manual_ip:
+  #   static_ip: 192.168.86.29
+  #   gateway: 192.168.86.1
+  #   subnet: 255.255.255.0
+
+esphome:
+  name: ropener-bedroom-master
+  # includes:
+  #   - esphome/components/tmc2209/tmc2209_component.h
+  on_boot:
+    - tmc2209.configure:
+        direction: !lambda return id(global_stepper_direction);
+        microsteps: 8
+        interpolation: true
+    - tmc2209.stallguard:
+        threshold: 50
+    - tmc2209.currents:
+        standstill_mode: freewheeling
+        #run_current: 1500
+        irun: 25 # 0-31. 31 = 2A current
+        ihold: 0
+        tpowerdown: 0
+        iholddelay: 0
+
+uart:
+  tx_pin: 6
+  rx_pin: 5
+  baud_rate: 500000
+
+stepper:
+  - platform: tmc2209
+    id: driver
+    max_speed: 2000 steps/s # Faster speed is louder
+    acceleration: 2000 steps/s^2
+    deceleration: 3000 steps/s^2
+    config_dump_include_registers: true
+    rsense: 100 mOhm
+    vsense: False
+    enn_pin: 8
+    index_pin: 0
+    diag_pin: 1
+    on_stall:
+      - stepper.stop: driver
+      - stepper.report_position:
+          id: driver
+          position: 0
+      - logger.log: "Homed cover"
+
+binary_sensor:
+ - platform: gpio
+   name: Button 1
+   id: btn1
+   pin:
+     number: 4
+     mode: INPUT
+     inverted: true
+   filters:
+     - delayed_on: 10ms
+   on_release: #
+     then:
+       - cover.close: ropener_cover
+   on_click: # Set the current position to zero. Also needs to update the cover
+      min_length: 3000ms
+      max_length: 10000ms
+      then:
+        - stepper.report_position:
+            id: driver
+            position: !lambda return id(global_distance_steps);
+        - logger.log: "Homed cover"
+
+ - platform: gpio
+   name: Button 2
+   id: btn2
+   pin:
+     number: 3
+     mode: INPUT
+     inverted: true
+   filters:
+     - delayed_on: 10ms
+   on_release:
+    then:
+     - cover.open: ropener_cover
+
+cover:
+  - platform: template
+    id: ropener_cover
+    name: Ropener
+    has_position: true
+    assumed_state: false
+    lambda: "return 1.0 - (id(driver)->current_position / id(global_distance_steps));"
+    stop_action:
+      - stepper.stop: driver
+    open_action:
+      - stepper.set_target:
+          id: driver
+          target: 0
+    close_action:
+      - stepper.set_target:
+          id: driver
+          target: !lambda return id(global_distance_steps);
+    position_action:
+      - stepper.set_target:
+          id: driver
+          target: !lambda return (1.0 - pos) * id(global_distance_steps);
+          
+button:
+  - platform: template
+    name: Set Close Position
+    entity_category: CONFIG
+    on_press:
+      - stepper.report_position:
+          id: driver
+          position: !lambda return id(global_distance_steps);
+
+switch:
+  - platform: template
+    name: "Motor Direction"
+    entity_category: CONFIG
+    optimistic: true
+    turn_on_action:
+      - globals.set:
+          id: global_stepper_direction
+          value: 'esphome::tmc2209::ShaftDirection::COUNTERCLOCKWISE'
+      - tmc2209.configure:
+          direction: !lambda return id(global_stepper_direction);
+    turn_off_action:
+      - globals.set:
+          id: global_stepper_direction
+          value: 'esphome::tmc2209::ShaftDirection::CLOCKWISE'
+      - tmc2209.configure:
+          direction: !lambda return id(global_stepper_direction);
+          
+number:
+# SET distance
+  - platform: template
+    name: distance_cm
+    step: 1
+    min_value: 1
+    max_value: 10000
+    mode: BOX
+    entity_category: CONFIG
+    lambda: return id(global_distance_cm);
+    update_interval: 1s
+    set_action: 
+      then:
+        - globals.set:
+            id: global_distance_cm
+            value: !lambda "return x;"
+        - globals.set:
+            id: global_distance_revolutions
+            value: !lambda "return float(id(global_distance_cm))/${gear_distance_cm};"
+        - globals.set:
+            id: global_distance_steps
+            value: !lambda "return id(global_distance_revolutions)*${steps_per_revolution};"
+
+  # global_max_distance_revs: "float(id(global_distance_cm))/${gear_distance_cm}"
+  # max_distance_steps: "id(global_distance_revs)*${steps_per_revolution}" # converts cm to steps. Use this in remaining code
+
+
+# SET acceleration
+  - platform: template
+    name: acceleration
+    step: 100
+    min_value: 100
+    max_value: 10000
+    mode: SLIDER
+    entity_category: CONFIG
+    lambda: return id(global_acceleration);
+    update_interval: 1s
+    set_action: 
+      then:
+        - globals.set:
+            id: global_acceleration
+            value: !lambda "return x;"
+        - stepper.set_acceleration:
+            id: driver
+            acceleration: !lambda "return id(global_acceleration);"
+
+# SET max_speed
+  - platform: template
+    name: max_speed
+    step: 100
+    min_value: 100
+    max_value: 10000
+    mode: SLIDER
+    entity_category: CONFIG
+    lambda: return id(global_max_speed);
+    update_interval: 1s
+    set_action: 
+      then:
+        - globals.set:
+            id: global_max_speed
+            value: !lambda "return x;"
+        - stepper.set_speed:
+            id: driver
+            speed: !lambda "return id(global_max_speed);"
+
+# SET irun
+  - platform: template
+    name: irun
+    step: 1
+    min_value: 1
+    max_value: 31
+    mode: BOX
+    entity_category: CONFIG
+    lambda: return id(driver)->read_field(IRUN_FIELD);
+    update_interval: 1s
+    set_action: 
+      then:
+        - globals.set:
+            id: global_irun
+            value: !lambda "return x;"
+        - tmc2209.currents:
+            irun: !lambda "return id(global_irun);"
+
+# SET SGTHRS
+  - platform: template
+    name: SGTHRS
+    step: 1
+    min_value: 0
+    max_value: 255
+    mode: SLIDER
+    entity_category: CONFIG
+    lambda: return id(driver)->read_register(SGTHRS);
+    update_interval: 1s
+    set_action: 
+      then:
+        - globals.set:
+            id: global_irun
+            value: !lambda "return x;"
+        - lambda: id(driver)->write_register(SGTHRS, x);
+
+# Display using sensor
+sensor:
+  - platform: template
+    name: "TSTEP Sensor" # SHOW TSTEP
+    lambda: return id(driver)->read_register(TSTEP);
+    update_interval: 5s
+    entity_category: DIAGNOSTIC
+  - platform: template # SHOW SG_RESULT
+    name: "SG_RESULT Sensor"
+    lambda: return id(driver)->read_register(SG_RESULT);
+    update_interval: 1s
+    entity_category: DIAGNOSTIC
