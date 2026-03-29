@@ -34,8 +34,8 @@ On 2 being pressed or the input from the controller going off spin the motor in 
 // It means 200 x 16 = 3200 steps per revolution. To set the speed to rotate one revolution per seconds, we would set the value below to 3200.
 // µstep velocity v[Hz] = VACTUAL[2209] * 0.715Hz
 //Change these values to get different speeds
-#define CLOSE_VELOCITY 1000
-#define OPEN_VELOCITY -1000
+#define LOWERING_VELOCITY 1000
+#define RAISING_VELOCITY -1000
 #define STOP_MOTOR_VELOCITY 0
 
 bool stalled_motor = false;
@@ -49,6 +49,12 @@ uint32_t target_position;
 int32_t motor_position;
 uint32_t maximum_motor_position;
 uint8_t target_percent;
+
+enum MotorState {
+  IDLE,
+  LOWERING,
+  RAISING
+};
 
 // FreeRTOS task handle for position monitoring
 TaskHandle_t position_watcher_task_handler = NULL;
@@ -90,12 +96,12 @@ static void btn1SingleClickCb(void *button_handle, void *usr_data) {
   vTaskResume(position_watcher_task_handler);
   delay(100);
   enable_driver();
-  driver.VACTUAL(OPEN_VELOCITY);
+  driver.VACTUAL(RAISING_VELOCITY);
 }
 
 // Lower the boot until it stalls
 static void btn1LongPressCb(void *button_handle, void *usr_data) {
-  Serial.println("Boot Down");
+  Serial.println("Boot Up");
 
   set_distance = true;
 
@@ -104,19 +110,19 @@ static void btn1LongPressCb(void *button_handle, void *usr_data) {
   vTaskResume(position_watcher_task_handler);
   delay(100);
   enable_driver();
-  driver.VACTUAL(OPEN_VELOCITY);
+  driver.VACTUAL(RAISING_VELOCITY);
 }
 
 // Turns the motor in a different direction
 static void btn2SingleClickCb(void *button_handle, void *usr_data) {
-  Serial.println("Boot Up");
+  Serial.println("Boot Down");
 
   target_position = 0;
 
   vTaskResume(position_watcher_task_handler);
   delay(100);
   enable_driver();
-  driver.VACTUAL(CLOSE_VELOCITY);
+  driver.VACTUAL(LOWERING_VELOCITY);
 }
 
 
