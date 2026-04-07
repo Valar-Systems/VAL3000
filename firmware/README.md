@@ -10,7 +10,7 @@ Matter on ESP-IDF can ONLY be used in Linux or Mac. WINDOWS WILL NOT WORK! If yo
 
 ## Stallguard
 
-Recommended Workflow for Setting StallGuard
+My Recommended Workflow for Setting StallGuard
 1.	First, I figure out the current to set. I need to have enough current to move whatever needs to be moved, but not much more. If the current is too high, StallGuard will require a lot of force to trip, so don’t set it much higher than the application calls for.
 2.	Then I figure out what velocity I want and set that.
 3.	Then I figure out what acceleration I want, trying to use the fastest I can for the application.
