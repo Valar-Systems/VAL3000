@@ -1,0 +1,41 @@
+menu "ESP Secure Cert Manager"
+
+    config ESP_SECURE_CERT_DS_PERIPHERAL
+        bool "Enable DS peripheral support"
+        default y
+        depends on SOC_DIG_SIGN_SUPPORTED
+        select MBEDTLS_HARDWARE_RSA_DS_PERIPHERAL
+        help
+            Enable the RSA DS peripheral support. Not supported on targets that do not support Digital Signature peripheral
+
+    config ESP_SECURE_CERT_SUPPORT_LEGACY_FORMATS
+        bool "Enable support for legacy formats"
+        default n
+        help
+            This option enables support for the legacy formats along with
+            the current format in the esp_secure_cert component.
+            The current format is
+            cust_flash_tlv
+            The legacy formats are as follows:
+            cust_flash
+            nvs
+
+    config ESP_SECURE_CERT_SECURE_VERIFICATION
+        bool "Enable secure verification support"
+        default n
+        depends on SECURE_BOOT_V2_RSA_ENABLED || SECURE_BOOT_V2_ECDSA_ENABLED
+        help
+            Enable support for secure verification for esp_secure_cert partition which relies on secure boot v2. Once enabled, the esp_secure_cert partition can be securely verified by calling esp_secure_cert_verify_partition() just after startup.
+
+    config ESP_SECURE_CERT_WRITE_ENABLE_LOGGING
+        bool "Enable verbose logging for write operations"
+        default n
+        help
+            Enable detailed logging for ESP Secure Cert write operations.
+            When disabled, only error logs are printed to reduce binary size.
+            Info, debug, and warning logs are suppressed when this option
+            is disabled, which can significantly reduce flash usage.
+            This is recommended for production builds since write operations
+            typically occur only once during device lifetime.
+
+endmenu # ESP Secure Cert Manager

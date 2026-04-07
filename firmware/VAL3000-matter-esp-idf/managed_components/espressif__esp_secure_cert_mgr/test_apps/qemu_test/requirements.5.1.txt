@@ -1,0 +1,5 @@
+pytest_embedded~=1.0
+pytest_embedded_idf~=1.0
+pytest_embedded_qemu~=1.0
+idf-build-apps~=2.0
+idf-ci~=0.4

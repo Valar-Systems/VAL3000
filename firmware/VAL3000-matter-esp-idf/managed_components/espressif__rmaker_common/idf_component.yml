@@ -1,0 +1,7 @@
+description: ESP RainMaker firmware agent Common component
+repository: git://github.com/espressif/esp-rainmaker-common.git
+repository_info:
+  commit_sha: 5fb960d5b4432a992f1680b8d410e1d2735bc71f
+  path: .
+url: https://github.com/espressif/esp-rainmaker-common
+version: 1.4.12

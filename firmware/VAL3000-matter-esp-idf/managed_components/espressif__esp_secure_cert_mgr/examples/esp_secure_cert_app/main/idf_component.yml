@@ -1,0 +1,5 @@
+dependencies:
+  espressif/esp_secure_cert_mgr:
+    version: ^2.0.8
+description: ESP Secure Cert Manager Example
+version: 1.0.0

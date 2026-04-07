@@ -1,0 +1,7 @@
+tlv_type,tlv_subtype,data_value,data_type,priv_key_type,algorithm,key_size,efuse_id,efuse_key
+ESP_SECURE_CERT_CA_CERT_TLV,0,contents/cacert_0_0.pem,file,,,,,
+ESP_SECURE_CERT_CA_CERT_TLV,1,contents/cacert_0_1.pem,file,,,,,
+ESP_SECURE_CERT_DEV_CERT_TLV,0,contents/devcert_1_0.pem,file,,,,,
+ESP_SECURE_CERT_PRIV_KEY_TLV,0,contents/privkey_2_0.pem,file,plaintext,RSA,,,
+ESP_SECURE_CERT_USER_DATA_1_TLV,0,Device Model: ESP32-S3-DevKit-C,string,,,,,
+ESP_SECURE_CERT_USER_DATA_2_TLV,0,DEADBEEFCAFEBABE1234567890ABCDEF,hex,,,,,

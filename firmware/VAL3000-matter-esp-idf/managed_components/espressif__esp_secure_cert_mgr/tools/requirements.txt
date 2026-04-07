@@ -1,0 +1,4 @@
+cryptography
+esptool
+esp-idf-nvs-partition-gen>=0.1.6,<1.0.0
+construct>=2.10.70

@@ -1,0 +1,12 @@
+# SPDX-FileCopyrightText: 2022-2025 Espressif Systems (Shanghai) CO LTD
+# SPDX-License-Identifier: Apache-2.0
+
+# Build and test rules for ESP Secure Cert Manager test applications
+# This file follows ESP-IDF standard test structure for pytest-embedded
+
+/:
+  enable:
+    - if: IDF_TARGET in ["esp32c3", "esp32"]
+      reason: test is supported on these targets
+  depends_components:
+    - unity

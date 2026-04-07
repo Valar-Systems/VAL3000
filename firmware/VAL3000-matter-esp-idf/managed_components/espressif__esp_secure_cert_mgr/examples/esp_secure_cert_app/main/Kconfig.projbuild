@@ -1,0 +1,23 @@
+menu "Example Configuration"
+
+config EXAMPLE_ESP_SECURE_CERT_ENABLE_CI
+    bool
+    default n
+    help
+        Enable this option to apply configuration settings required for running
+        the esp_secure_cert example in Continuous Integration (CI) environments.
+        This may include settings for automated testing, mock data, or other
+        CI-specific behaviors. It is not intended for production use.
+
+config EXAMPLE_ESP_SECURE_CERT_WRITE_DEMO
+    bool "Enable write functionality demo"
+    default n
+    help
+        Enable this option to run a simple write functionality demonstration.
+        This shows how to use esp_secure_cert_append_tlv() to write custom
+        user data to the esp_secure_cert partition.
+
+        WARNING: This will erase and modify the esp_secure_cert partition!
+        Only enable for testing or on devices without production credentials.
+
+endmenu

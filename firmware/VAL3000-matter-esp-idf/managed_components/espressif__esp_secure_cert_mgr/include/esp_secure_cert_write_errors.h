@@ -1,0 +1,68 @@
+/*
+ * SPDX-FileCopyrightText: 2022-2025 Espressif Systems (Shanghai) CO LTD
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+#pragma once
+
+#include "esp_err.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/**
+ * @brief ESP Secure Cert Write Error Codes
+ *
+ * These error codes provide specific information about write operation failures
+ * without relying on verbose logging for debugging.
+ */
+
+/* Base error codes for ESP Secure Cert Write operations */
+#define ESP_SECURE_CERT_WRITE_ERR_BASE                  0x7000
+
+/* TLV preparation and validation errors */
+#define ESP_ERR_SECURE_CERT_TLV_INVALID_TYPE           (ESP_SECURE_CERT_WRITE_ERR_BASE + 1)
+#define ESP_ERR_SECURE_CERT_TLV_INVALID_LENGTH          (ESP_SECURE_CERT_WRITE_ERR_BASE + 2)
+#define ESP_ERR_SECURE_CERT_TLV_INVALID_DATA            (ESP_SECURE_CERT_WRITE_ERR_BASE + 3)
+#define ESP_ERR_SECURE_CERT_TLV_BUFFER_TOO_SMALL        (ESP_SECURE_CERT_WRITE_ERR_BASE + 4)
+#define ESP_ERR_SECURE_CERT_TLV_ALREADY_EXISTS          (ESP_SECURE_CERT_WRITE_ERR_BASE + 5)
+
+/* Partition and flash errors */
+#define ESP_ERR_SECURE_CERT_PARTITION_NOT_FOUND         (ESP_SECURE_CERT_WRITE_ERR_BASE + 10)
+#define ESP_ERR_SECURE_CERT_PARTITION_ACCESS_FAILED     (ESP_SECURE_CERT_WRITE_ERR_BASE + 11)
+#define ESP_ERR_SECURE_CERT_FLASH_NOT_ERASED            (ESP_SECURE_CERT_WRITE_ERR_BASE + 12)
+#define ESP_ERR_SECURE_CERT_FLASH_WRITE_FAILED          (ESP_SECURE_CERT_WRITE_ERR_BASE + 13)
+#define ESP_ERR_SECURE_CERT_FLASH_READ_FAILED           (ESP_SECURE_CERT_WRITE_ERR_BASE + 14)
+#define ESP_ERR_SECURE_CERT_ERASE_FAILED                (ESP_SECURE_CERT_WRITE_ERR_BASE + 15)
+
+/* Configuration and buffer errors */
+#define ESP_ERR_SECURE_CERT_INVALID_WRITE_MODE          (ESP_SECURE_CERT_WRITE_ERR_BASE + 20)
+#define ESP_ERR_SECURE_CERT_BUFFER_CONFIG_INVALID       (ESP_SECURE_CERT_WRITE_ERR_BASE + 21)
+#define ESP_ERR_SECURE_CERT_BUFFER_OVERFLOW             (ESP_SECURE_CERT_WRITE_ERR_BASE + 22)
+#define ESP_ERR_SECURE_CERT_WRITE_OFFSET_INVALID        (ESP_SECURE_CERT_WRITE_ERR_BASE + 23)
+
+/* HMAC encryption errors */
+#define ESP_ERR_SECURE_CERT_HMAC_KEY_NOT_FOUND          (ESP_SECURE_CERT_WRITE_ERR_BASE + 30)
+#define ESP_ERR_SECURE_CERT_HMAC_ENCRYPTION_FAILED      (ESP_SECURE_CERT_WRITE_ERR_BASE + 31)
+#define ESP_ERR_SECURE_CERT_HMAC_IV_GENERATION_FAILED   (ESP_SECURE_CERT_WRITE_ERR_BASE + 32)
+
+/* Memory allocation errors */
+#define ESP_ERR_SECURE_CERT_WRITE_NO_MEMORY             (ESP_SECURE_CERT_WRITE_ERR_BASE + 40)
+#define ESP_ERR_SECURE_CERT_ERASE_CHECK_NO_MEMORY       (ESP_SECURE_CERT_WRITE_ERR_BASE + 41)
+
+/* Concurrency errors */
+#define ESP_ERR_SECURE_CERT_WRITE_IN_PROGRESS           (ESP_SECURE_CERT_WRITE_ERR_BASE + 50)
+
+/* ECDSA key derivation errors */
+#define ESP_ERR_SECURE_CERT_ECDSA_KEY_INVALID           (ESP_SECURE_CERT_WRITE_ERR_BASE + 60)
+#define ESP_ERR_SECURE_CERT_ECDSA_KEY_GEN_FAILED        (ESP_SECURE_CERT_WRITE_ERR_BASE + 61)
+#define ESP_ERR_SECURE_CERT_EFUSE_WRITE_FAILED          (ESP_SECURE_CERT_WRITE_ERR_BASE + 62)
+#define ESP_ERR_SECURE_CERT_HMAC_KEY_ALREADY_EXISTS     (ESP_SECURE_CERT_WRITE_ERR_BASE + 63)
+#define ESP_ERR_SECURE_CERT_KEY_VERIFICATION_FAILED     (ESP_SECURE_CERT_WRITE_ERR_BASE + 64)
+#define ESP_ERR_SECURE_CERT_PBKDF2_FAILED               (ESP_SECURE_CERT_WRITE_ERR_BASE + 65)
+
+#ifdef __cplusplus
+}
+#endif

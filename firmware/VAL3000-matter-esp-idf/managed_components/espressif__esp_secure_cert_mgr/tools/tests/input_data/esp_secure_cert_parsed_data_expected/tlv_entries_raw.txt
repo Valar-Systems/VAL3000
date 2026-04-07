@@ -1,0 +1,187 @@
+ESP Secure Certificate TLV Parser
+File: esp_secure_cert.bin
+File size: 5232 bytes
+================================================================================
+
+TLV Entry #1: ESP_SECURE_CERT_CA_CERT_TLV
+------------------------------------------------------------
+Offset:     0x0000
+Type:       0 (ESP_SECURE_CERT_CA_CERT_TLV)
+Subtype:    0
+Flags:      0x00
+Length:     1108 bytes
+Padding:    12 bytes
+Total size: 1136 bytes
+CRC32:      0x54ACFEDD (✓ VALID)
+Data:
+    -----BEGIN CERTIFICATE-----
+    MIIDBTCCAe2gAwIBAgIUOMOG8X4yeYRVb/8EvkSnqVsxRw4wDQYJKoZIhvcNAQEL
+    BQAwEjEQMA4GA1UEAwwHVGVzdCBDQTAeFw0yNTA2MDMxMTU1MDNaFw0zNTA2MDEx
+    MTU1MDNaMBIxEDAOBgNVBAMMB1Rlc3QgQ0EwggEiMA0GCSqGSIb3DQEBAQUAA4IB
+    DwAwggEKAoIBAQCPtw1Sa8CPAdydDI5jWehUsdN9Mw6gO44GazXHLU87/5xe3zf5
+    BD7dC9VqP1rPNsM3/yx9hxUvcRC3Pd+mWOiCEa23ZbKKe4v1qjEyF2ENt9ILVwqD
+    Wz4Zew6UcAdAKObw6h4efg5p3F8Vv3gOwGEn40VdFWd92z4b79cEyCEXze69PO+O
+    Rjod7ticvDHlkSm/HSfwOZFXKMnHvhe7LsFoU9obUAv3Gtq3tMvH+rarNO/q2t2E
+    i74urP94nrjNLKbxlUeflfnKxxkq47T8EFVgML8O/XzrDk1C0nOJnn7+QLpdbR27
+    oBVBBCBBLtMkz2as4t7MO9ew/FA6FMmD/TtRAgMBAAGjUzBRMB0GA1UdDgQWBBT5
+    r5phVTPCjVd7KMAFRvSHMm9+QjAfBgNVHSMEGDAWgBT5r5phVTPCjVd7KMAFRvSH
+    Mm9+QjAPBgNVHRMBAf8EBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQB7daeu0OLL
+    EpN8aqZhsYGKRI4bnBHwDLm2v0GpcsNAwvGm097lES2nDKFVYatx/TrlA7PGxBSF
+    xh4wBHL/GKoQolW6fU7u0y3z4QLSdmAniQ0nIAbT+5bkMHwiSs7Tr58FHwz1TK5P
+    v0brr46Ag87U/rYeHM7GOyeV/Fbzj1g0kj2d64rkeIwHFKGGnKL0gnW22vwVXOQJ
+    wMa6+OVCzfultIbmMgp/7oXq/Gmtp1OO9ZZ3aoWd58jHA7mr679jnbAvUYpybJ5y
+    h4kc6J2a37XFoZirO4uU9ED9Yxa1JDNCyWiuBKW0IKTKVHqa6E6/DF3+pSHLnIsz
+    /Ucx3v1QHutQ
+    -----END CERTIFICATE-----
+    
+
+
+TLV Entry #2: ESP_SECURE_CERT_CA_CERT_TLV
+------------------------------------------------------------
+Offset:     0x0470
+Type:       0 (ESP_SECURE_CERT_CA_CERT_TLV)
+Subtype:    1
+Flags:      0x00
+Length:     1108 bytes
+Padding:    12 bytes
+Total size: 1136 bytes
+CRC32:      0xD4BB58B4 (✓ VALID)
+Data:
+    -----BEGIN CERTIFICATE-----
+    MIIDBTCCAe2gAwIBAgIUOMOG8X4yeYRVb/8EvkSnqVsxRw4wDQYJKoZIhvcNAQEL
+    BQAwEjEQMA4GA1UEAwwHVGVzdCBDQTAeFw0yNTA2MDMxMTU1MDNaFw0zNTA2MDEx
+    MTU1MDNaMBIxEDAOBgNVBAMMB1Rlc3QgQ0EwggEiMA0GCSqGSIb3DQEBAQUAA4IB
+    DwAwggEKAoIBAQCPtw1Sa8CPAdydDI5jWehUsdN9Mw6gO44GazXHLU87/5xe3zf5
+    BD7dC9VqP1rPNsM3/yx9hxUvcRC3Pd+mWOiCEa23ZbKKe4v1qjEyF2ENt9ILVwqD
+    Wz4Zew6UcAdAKObw6h4efg5p3F8Vv3gOwGEn40VdFWd92z4b79cEyCEXze69PO+O
+    Rjod7ticvDHlkSm/HSfwOZFXKMnHvhe7LsFoU9obUAv3Gtq3tMvH+rarNO/q2t2E
+    i74urP94nrjNLKbxlUeflfnKxxkq47T8EFVgML8O/XzrDk1C0nOJnn7+QLpdbR27
+    oBVBBCBBLtMkz2as4t7MO9ew/FA6FMmD/TtRAgMBAAGjUzBRMB0GA1UdDgQWBBT5
+    r5phVTPCjVd7KMAFRvSHMm9+QjAfBgNVHSMEGDAWgBT5r5phVTPCjVd7KMAFRvSH
+    Mm9+QjAPBgNVHRMBAf8EBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQB7daeu0OLL
+    EpN8aqZhsYGKRI4bnBHwDLm2v0GpcsNAwvGm097lES2nDKFVYatx/TrlA7PGxBSF
+    xh4wBHL/GKoQolW6fU7u0y3z4QLSdmAniQ0nIAbT+5bkMHwiSs7Tr58FHwz1TK5P
+    v0brr46Ag87U/rYeHM7GOyeV/Fbzj1g0kj2d64rkeIwHFKGGnKL0gnW22vwVXOQJ
+    wMa6+OVCzfultIbmMgp/7oXq/Gmtp1OO9ZZ3aoWd58jHA7mr679jnbAvUYpybJ5y
+    h4kc6J2a37XFoZirO4uU9ED9Yxa1JDNCyWiuBKW0IKTKVHqa6E6/DF3+pSHLnIsz
+    /Ucx3v1QHutQ
+    -----END CERTIFICATE-----
+    
+
+
+TLV Entry #3: ESP_SECURE_CERT_DEV_CERT_TLV
+------------------------------------------------------------
+Offset:     0x08E0
+Type:       1 (ESP_SECURE_CERT_DEV_CERT_TLV)
+Subtype:    0
+Flags:      0x00
+Length:     1156 bytes
+Padding:    12 bytes
+Total size: 1184 bytes
+CRC32:      0xF6BCDAFE (✓ VALID)
+Data:
+    -----BEGIN CERTIFICATE-----
+    MIIDKTCCAhGgAwIBAgIUbMhJehS3g3mrlBy1G2ljcc5cmk0wDQYJKoZIhvcNAQEL
+    BQAwEjEQMA4GA1UEAwwHVGVzdCBDQTAeFw0yNTA2MDMxMTU1NDZaFw0yNjA2MDMx
+    MTU1NDZaMEcxCzAJBgNVBAYTAklOMQ0wCwYDVQQIDARNYWhhMQ0wCwYDVQQHDARQ
+    dW5lMQwwCgYDVQQKDANFc3AxDDAKBgNVBAsMA2lkZjCCASIwDQYJKoZIhvcNAQEB
+    BQADggEPADCCAQoCggEBALTr+Ggio62Gyg0MJTlcMG4FOK5MqMrkwNs29KmLinEb
+    wfXCvHTakrOly5+Kk7EHKuVPKSj5JkOkWxX2qe454qYl1qWFreUFmD7HoAkIUsXC
+    rFlnq6N+W0urymOx8tnCnRGxEFDGa978w+jXXjegXRRw9S7fA/jZhogki5b8ehFD
+    YV8/yXiIASpLMSLPkDVDtpf9UxemtPkegS/uFO3Se+gBvIeOPPnZFDiVtWfLL8xj
+    0VVEa8oRqj2QRrcpw4X677m59KFeuEufdcji/vxh4SNVDQbx44rL2meh0hrOqKnd
+    xgcaQk8QO0bVvhgs/2P4MXg1sVx4yBrw+g6jZqceyY0CAwEAAaNCMEAwHQYDVR0O
+    BBYEFAetau77voiU+wIPvw2dvujsFAe5MB8GA1UdIwQYMBaAFPmvmmFVM8KNV3so
+    wAVG9Icyb35CMA0GCSqGSIb3DQEBCwUAA4IBAQBZ6Zb7g5eNF/ICQc1O1QK6vUIA
+    nU4iBwG/DbN3ZyNrA7aXtSf3iuWbSdgiFHgWZixMXg9DIu4GxSyRAdq5Q9JiQuNt
+    8p+UZmJ4lBi66FY7jb9WBGpnHEp1n9yISKuGnmKzOjtDG3fXpQ4mjwdShqXP4F4T
+    BgoeDn3bOUhm2zN3RlED0RfaIbZQobSUOi7tXS+sRAxlUTLV3XyFxpeAvlsV3hTy
+    pSc3sJQOgitWzVmYR6fmOcHpDTBtf10umq7HcUC6GzPikmt8ezFWg9Y/x748B9EF
+    s62mWvngMNR1FWxXE4GUGS4gTaV2ltZd20uRG2Rm5IER80NqwwaqiCu00RQl
+    -----END CERTIFICATE-----
+    
+
+
+TLV Entry #4: ESP_SECURE_CERT_PRIV_KEY_TLV
+------------------------------------------------------------
+Offset:     0x0D80
+Type:       2 (ESP_SECURE_CERT_PRIV_KEY_TLV)
+Subtype:    0
+Flags:      0x00
+Length:     1680 bytes
+Padding:    0 bytes
+Total size: 1696 bytes
+CRC32:      0x5DF88795 (✓ VALID)
+Data:
+    DEFAULT_FORMAT_KEY (Plaintext)
+    -----BEGIN RSA PRIVATE KEY-----
+    MIIEpAIBAAKCAQEAtOv4aCKjrYbKDQwlOVwwbgU4rkyoyuTA2zb0qYuKcRvB9cK8
+    dNqSs6XLn4qTsQcq5U8pKPkmQ6RbFfap7jnipiXWpYWt5QWYPsegCQhSxcKsWWer
+    o35bS6vKY7Hy2cKdEbEQUMZr3vzD6NdeN6BdFHD1Lt8D+NmGiCSLlvx6EUNhXz/J
+    eIgBKksxIs+QNUO2l/1TF6a0+R6BL+4U7dJ76AG8h448+dkUOJW1Z8svzGPRVURr
+    yhGqPZBGtynDhfrvubn0oV64S591yOL+/GHhI1UNBvHjisvaZ6HSGs6oqd3GBxpC
+    TxA7RtW+GCz/Y/gxeDWxXHjIGvD6DqNmpx7JjQIDAQABAoIBAB0GwM9gQ1dbST5n
+    pO87ea+lGc9pECmhIsno2r762sbD184IpLiwupmk73LUxlZAGqM4nJdsxbVTgKOY
+    8/F7CwByEKp0tI4KZD8qQuRAGBuPXJxpdBGie5473Rg6nAZQ4WdNu5riArt/XSUV
+    rJGLInPdnZCcCiSaLanZByY9so3jNv5EUk25is8k/N3VtiFUjBieY2R7JOBVsZze
+    0noBZH7TSUIBxIUVbjwdPKsgR5MyPXPKRuNDhL61p/slxL1SmPwqiTIJThYGFB4Q
+    yA5+YABOgZ63AiNx3EsxGXG0jNvuwLBwiTV173DjaB0QJ3MtxmdJDXrrENic1GLC
+    FOE4FCcCgYEA3UsjAesfyfORyDX87wHoXbKh8JZxD1UjeKI6CXcR2xR4Qski5owJ
+    lH+9j1udTUkOvZQFPdbYAIy+FDbH3Z35aP6pRrTJ+efwk8LcB+6isYRlYVtOqjLz
+    Yo3fpd26+z2ZBYPWjbX7vZ0Eyn090mYpZxX8GiIj98qpvzctnIEtjkMCgYEA0Uvr
+    x15fLpcbrOg7PSTtPP1mfKUPY4BlMGV4jklJeO2Ll303ba8sEmbFKboz+pr0KLR7
+    s98g+XWMx0S5soHAStRyXT9cqBqD8WU3LpVQfbLEVYlRINzwtllUNGyN5kMebSSP
+    X5PBsz5yvVLV14+LoF7ziXjqPTDEvYk1ZldYE+8CgYBSE1MZnA4/ReJ1AmkccHWx
+    gtaDOBkY2bf9PxYNeqcZvV7ZTmZuYdQPys0QxabzCjy4XZUQGYYltg2ty5+Xd8cQ
+    hRtdiSI8WSUmeKhJHN4kvvknAcmMYLdaf0pK55E5K+B8ZiiGiM+kxP8I5yitx4xl
+    mobVXoI+nmEU9a8qE9NEpwKBgQDCE3eQSOdUCZUFMdd0rGA81PELFff+GVo7lWxD
+    7Jtvwj5V/CvAztW8PoYHWn3GnZdYg3vN4FLwX1tqkETtzTllajieVRnzW5sL5gJU
+    dOrNlE5QzuNm6NlhDdZyQlMWuRhmtqcoRpgwQPEes8hNefNMg5+q02/JzAYzhx74
+    RngLCwKBgQDZkRZjgq0WZO0UZ/o2qFLeIsUyL+CV2cikOnAKfir3IA01FDzv15HP
+    phl1+++DJGVlqs3IZL3UFHsCvWe/DEKLIsF31/9KPELSmCDiA5G1OHDz+01RQCNK
+    Bde8sGqGFyFW0/8o1+8G3nrXJrTnoFBAow7zQPMmUkE+oYj23ijXGg==
+    -----END RSA PRIVATE KEY-----
+    
+
+
+TLV Entry #5: ESP_SECURE_CERT_USER_DATA_1_TLV
+------------------------------------------------------------
+Offset:     0x1420
+Type:       51 (ESP_SECURE_CERT_USER_DATA_1_TLV)
+Subtype:    0
+Flags:      0x00
+Length:     31 bytes
+Padding:    1 bytes
+Total size: 48 bytes
+CRC32:      0x2E60F6D8 (✓ VALID)
+Data:
+    Text data: Device Model: ESP32-S3-DevKit-C
+
+TLV Entry #6: ESP_SECURE_CERT_USER_DATA_2_TLV
+------------------------------------------------------------
+Offset:     0x1450
+Type:       52 (ESP_SECURE_CERT_USER_DATA_2_TLV)
+Subtype:    0
+Flags:      0x00
+Length:     16 bytes
+Padding:    0 bytes
+Total size: 32 bytes
+CRC32:      0x2AF3C61C (✓ VALID)
+Data:
+    Hex data: deadbeefcafebabe1234567890abcdef
+
+================================================================================
+PARTITION SUMMARY
+================================================================================
+Total TLV entries: 6
+Total partition size: 5232 bytes
+
+Found TLV types:
+  - ESP_SECURE_CERT_CA_CERT_TLV: 2 entries, 2216 bytes total
+  - ESP_SECURE_CERT_DEV_CERT_TLV: 1156 bytes
+  - ESP_SECURE_CERT_PRIV_KEY_TLV: 1680 bytes
+  - ESP_SECURE_CERT_USER_DATA_1_TLV: 31 bytes
+  - ESP_SECURE_CERT_USER_DATA_2_TLV: 16 bytes
+
+Key Configuration:
+  - Software-based (Plaintext)

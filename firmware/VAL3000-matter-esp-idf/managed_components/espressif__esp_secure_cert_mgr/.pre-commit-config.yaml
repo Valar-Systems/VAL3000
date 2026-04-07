@@ -1,0 +1,20 @@
+# Contains the pre-commit hooks for the repository
+
+# Global exclude - applies to all hooks
+exclude: '^(test_apps/|tools/tests/)'
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: '.+\.(md|rst|csv|txt)'
+      - id: end-of-file-fixer
+      - id: check-executables-have-shebangs
+      - id: mixed-line-ending
+        args: ['-f=lf']
+  - repo: https://github.com/PyCQA/flake8
+    rev: 7.3.0
+    hooks:
+      - id: flake8
+        args: ['--config=tools/.flake8', '--tee', '--benchmark']
