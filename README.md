@@ -1,22 +1,17 @@
 # VAL3000
-Wireless Stepper Motor Driver
+The VAL3000 is the easiest, fastest, cheapest, safest, and most wireless way to spin a stepper motor.
+
 #### [Quick overview video here](https://youtube.com/shorts/FnWmoFnG2Ak)
 
 #### [Purchase it here](https://valarsystems.com/products/val3000). If sold out, PLEASE sign up to the "Notify me when available" button, that's the only way we know to make more. If you don't sign up, we won't make more!
 
 <div style="text-align: center;">
-<img src="/docs/media/11.jpg" width="600">
-</div>
-<img src="/docs/media/1.jpg" width="600">
-</div>
-<img src="/docs/media/6.jpg" width="600">
-</div>
-<img src="/docs/media/16.jpg" width="600">
+<img src="/docs/media/11.jpg" width="400">
+<img src="/docs/media/6.jpg" width="400">
+
 
 ## Overview
-The VAL3000 is the easiest, fastest, cheapest, safest, and most wireless way to spin a stepper motor.
-
-You can precisely control a motor's distance, speed, current, and stall characteristics within minutes of receiving it. No programming experience is required.
+You can precisely control a motor's distance, speed, current, and stall characteristics within minutes of receiving it.
 
 If you want to program it yourself, all code is included.
 
@@ -31,7 +26,8 @@ The VAL3000 contains the following components in a very small package:
 
 1. Connect any bipolar (4-wire) stepper motor
 2. Connect a 12-24V 2A+ power supply (2.1mm x 5.5mm barrel connector)
-3. Open a browser and connect via WiFi
+3. Press one of the buttons, and the motor will start and stop.
+4. Upload one of many firmware files, including ESPHome and customize it how you would like.
 
 
 And that's it!
@@ -42,8 +38,7 @@ If you love to program, that's great! We've made it extremely simple to do so. S
 
 ## WiFi Control
 
-The VAL3000 is already loaded with firmware to get you going right away.
-Simply connect to it via WiFi and get the motor going right away.
+Connect to ESPHome using the included YAML and control it wirelessly. Or upload the Matter or API firmware to control it like that.
 
 
 ## Detailed Features
