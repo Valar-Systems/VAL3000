@@ -32,8 +32,8 @@
 // It means 200 x 16 = 3200 steps per revolution. To set the speed to rotate one revolution per seconds, we would set the value below to 3200.
 // µstep velocity v[Hz] = VACTUAL[2209] * 0.715Hz
 //Change these values to get different speeds
-#define CLOSING_VELOCITY 1000
-#define OPENING_VELOCITY -1000
+#define CLOSING_VELOCITY 2000
+#define OPENING_VELOCITY -2000
 #define IDLE_VELOCITY 0
 
 bool stalled_motor = false;
@@ -151,7 +151,7 @@ void setup() {
   driver.ottrim(0);
 
   // Velocity Dependent Control
-  driver.irun(20);  // set to 31 for max current. Driver will get HOT without active cooling
+  driver.irun(31);  // set to 31 for max current. Driver will get HOT without active cooling
   driver.ihold(0);
   driver.iholddelay(1);  // Set I_HOLD_DELAY to 1 to 15 for smooth standstill current decay
   driver.TPOWERDOWN(20);
