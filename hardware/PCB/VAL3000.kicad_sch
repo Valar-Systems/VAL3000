@@ -11377,17 +11377,6 @@
 				)
 			)
 		)
-		(property "Imax" ""
-			(at 137.16 154.94 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "Iq" ""
 			(at 137.16 154.94 90)
 			(hide yes)
@@ -11824,17 +11813,6 @@
 				)
 			)
 		)
-		(property "Imax" ""
-			(at 198.12 255.27 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "Iq" ""
 			(at 198.12 255.27 0)
 			(hide yes)
@@ -12139,17 +12117,6 @@
 				)
 			)
 		)
-		(property "Imax" ""
-			(at 170.18 344.17 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "Iq" ""
 			(at 170.18 344.17 0)
 			(hide yes)
@@ -12376,17 +12343,6 @@
 				)
 			)
 		)
-		(property "Imax" ""
-			(at 132.08 344.17 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "Iq" ""
 			(at 132.08 344.17 0)
 			(hide yes)
@@ -12562,10 +12518,10 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom no)
+		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "148a358e-4ce1-4475-a52e-d803a66d0878")
 		(property "Reference" "J3"
@@ -13230,17 +13186,6 @@
 				)
 			)
 		)
-		(property "Imax" ""
-			(at 152.4 384.81 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "Iq" ""
 			(at 152.4 384.81 0)
 			(hide yes)
@@ -13569,17 +13514,6 @@
 			)
 		)
 		(property "IMax" ""
-			(at 349.25 161.29 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Imax" ""
 			(at 349.25 161.29 90)
 			(hide yes)
 			(show_name no)
@@ -13934,17 +13868,6 @@
 			)
 		)
 		(property "IMax" ""
-			(at 93.98 384.81 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Imax" ""
 			(at 93.98 384.81 90)
 			(hide yes)
 			(show_name no)
@@ -14447,17 +14370,6 @@
 			)
 		)
 		(property "IMax" ""
-			(at 359.41 270.51 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Imax" ""
 			(at 359.41 270.51 0)
 			(hide yes)
 			(show_name no)
@@ -15243,17 +15155,6 @@
 				)
 			)
 		)
-		(property "Imax" ""
-			(at 219.71 160.02 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "Iq" ""
 			(at 219.71 160.02 90)
 			(hide yes)
@@ -15560,17 +15461,6 @@
 				)
 			)
 		)
-		(property "Imax" ""
-			(at 123.19 358.14 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "Iq" ""
 			(at 123.19 358.14 0)
 			(hide yes)
@@ -15761,17 +15651,6 @@
 			)
 		)
 		(property "IMax" ""
-			(at 349.25 397.51 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Imax" ""
 			(at 349.25 397.51 90)
 			(hide yes)
 			(show_name no)
@@ -16213,17 +16092,6 @@
 				)
 			)
 		)
-		(property "Imax" ""
-			(at 143.51 406.4 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "Iq" ""
 			(at 143.51 406.4 90)
 			(hide yes)
@@ -16501,17 +16369,6 @@
 				)
 			)
 		)
-		(property "Imax" ""
-			(at 344.17 394.97 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "Iq" ""
 			(at 344.17 394.97 90)
 			(hide yes)
@@ -16704,17 +16561,6 @@
 			)
 		)
 		(property "IMax" ""
-			(at 99.06 264.16 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Imax" ""
 			(at 99.06 264.16 90)
 			(hide yes)
 			(show_name no)
@@ -17105,17 +16951,6 @@
 				)
 			)
 		)
-		(property "Imax" ""
-			(at 64.77 153.67 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "Iq" ""
 			(at 64.77 153.67 90)
 			(hide yes)
@@ -17419,17 +17254,6 @@
 				)
 			)
 		)
-		(property "Imax" ""
-			(at 157.48 165.1 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "Iq" ""
 			(at 157.48 165.1 0)
 			(hide yes)
@@ -17656,17 +17480,6 @@
 				)
 			)
 		)
-		(property "Imax" ""
-			(at 210.82 255.27 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "Iq" ""
 			(at 210.82 255.27 0)
 			(hide yes)
@@ -17860,17 +17673,6 @@
 			)
 		)
 		(property "IMax" ""
-			(at 208.28 154.94 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Imax" ""
 			(at 208.28 154.94 90)
 			(hide yes)
 			(show_name no)
@@ -18186,17 +17988,6 @@
 			)
 		)
 		(property "IMax" ""
-			(at 67.31 248.92 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Imax" ""
 			(at 67.31 248.92 0)
 			(hide yes)
 			(show_name no)
@@ -18546,17 +18337,6 @@
 				)
 			)
 		)
-		(property "Imax" ""
-			(at 280.67 270.51 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "Iq" ""
 			(at 280.67 270.51 0)
 			(hide yes)
@@ -18760,17 +18540,6 @@
 			)
 		)
 		(property "IMax" ""
-			(at 90.17 264.16 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Imax" ""
 			(at 90.17 264.16 90)
 			(hide yes)
 			(show_name no)
@@ -19037,17 +18806,6 @@
 			)
 		)
 		(property "IMax" ""
-			(at 302.26 264.16 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Imax" ""
 			(at 302.26 264.16 0)
 			(hide yes)
 			(show_name no)
@@ -20077,17 +19835,6 @@
 				)
 			)
 		)
-		(property "Imax" ""
-			(at 109.22 360.68 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "Iq" ""
 			(at 109.22 360.68 0)
 			(hide yes)
@@ -20304,17 +20051,6 @@
 			)
 		)
 		(property "IMax" ""
-			(at 347.98 270.51 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Imax" ""
 			(at 347.98 270.51 0)
 			(hide yes)
 			(show_name no)
@@ -20877,17 +20613,6 @@
 			)
 		)
 		(property "IMax" ""
-			(at 76.2 158.75 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Imax" ""
 			(at 76.2 158.75 90)
 			(hide yes)
 			(show_name no)
@@ -21713,17 +21438,6 @@
 				)
 			)
 		)
-		(property "Imax" ""
-			(at 160.02 344.17 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "Iq" ""
 			(at 160.02 344.17 0)
 			(hide yes)
@@ -22017,17 +21731,6 @@
 			)
 		)
 		(property "IMax" ""
-			(at 85.09 163.83 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Imax" ""
 			(at 85.09 163.83 0)
 			(hide yes)
 			(show_name no)
@@ -22560,17 +22263,6 @@
 				)
 			)
 		)
-		(property "Imax" ""
-			(at 335.28 261.62 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "Iq" ""
 			(at 335.28 261.62 90)
 			(hide yes)
@@ -22797,17 +22489,6 @@
 				)
 			)
 		)
-		(property "Imax" ""
-			(at 327.66 349.25 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "Iq" ""
 			(at 327.66 349.25 0)
 			(hide yes)
@@ -22989,17 +22670,6 @@
 			)
 		)
 		(property "IMax" ""
-			(at 227.33 359.41 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Imax" ""
 			(at 227.33 359.41 0)
 			(hide yes)
 			(show_name no)
@@ -23300,17 +22970,6 @@
 			)
 		)
 		(property "IMax" ""
-			(at 148.59 160.02 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Imax" ""
 			(at 148.59 160.02 90)
 			(hide yes)
 			(show_name no)
@@ -23829,17 +23488,6 @@
 			)
 		)
 		(property "IMax" ""
-			(at 140.97 372.11 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Imax" ""
 			(at 140.97 372.11 0)
 			(hide yes)
 			(show_name no)
@@ -24640,17 +24288,6 @@
 				)
 			)
 		)
-		(property "Imax" ""
-			(at 228.6 165.1 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "Iq" ""
 			(at 228.6 165.1 0)
 			(hide yes)
@@ -24997,17 +24634,6 @@
 			)
 		)
 		(property "IMax" ""
-			(at 360.68 161.29 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Imax" ""
 			(at 360.68 161.29 90)
 			(hide yes)
 			(show_name no)
@@ -25395,17 +25021,6 @@
 				)
 			)
 		)
-		(property "Imax" ""
-			(at 64.77 394.97 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "Iq" ""
 			(at 64.77 394.97 90)
 			(hide yes)
@@ -25619,17 +25234,6 @@
 				)
 			)
 		)
-		(property "Imax" ""
-			(at 238.76 349.25 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "Iq" ""
 			(at 238.76 349.25 90)
 			(hide yes)
@@ -25820,17 +25424,6 @@
 			)
 		)
 		(property "IMax" ""
-			(at 143.51 412.75 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Imax" ""
 			(at 143.51 412.75 90)
 			(hide yes)
 			(show_name no)
@@ -26057,17 +25650,6 @@
 			)
 		)
 		(property "IMax" ""
-			(at 314.96 349.25 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Imax" ""
 			(at 314.96 349.25 0)
 			(hide yes)
 			(show_name no)
@@ -26670,17 +26252,6 @@
 				)
 			)
 		)
-		(property "Imax" ""
-			(at 323.85 266.7 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(property "Iq" ""
 			(at 323.85 266.7 0)
 			(hide yes)
@@ -27062,17 +26633,6 @@
 			)
 		)
 		(property "IMax" ""
-			(at 146.05 344.17 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Imax" ""
 			(at 146.05 344.17 0)
 			(hide yes)
 			(show_name no)
