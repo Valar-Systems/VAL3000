@@ -588,7 +588,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "G:/My Drive/Products/VAL3000/PCB/5-10-26/PCB/",
+      "plot": "G:/My Drive/Products/VAL3000/PCB/5-12-26/PCB/",
       "pos_files": "G:/My Drive/Products/VAL-3000/PCB/12-3-25/",
       "specctra_dsn": "",
       "step": "MorningRope_3D.step",
@@ -897,7 +897,7 @@
         "uuid": "947b52da-b0af-4e24-a217-672042c043ca"
       }
     ],
-    "used_designators": "F1",
+    "used_designators": "F1,J2",
     "variants": []
   },
   "sheets": [
