@@ -603,7 +603,7 @@
       "method": 0,
       "sort_order": 0
     },
-    "bom_export_filename": "G:\\My Drive\\Products\\VAL-3000\\PCB\\12-3-25\\VAL3000.csv",
+    "bom_export_filename": "G:\\My Drive\\Products\\VAL3000\\PCB\\6-8-26\\VAL3000.csv",
     "bom_fmt_presets": [],
     "bom_fmt_settings": {
       "field_delimiter": ",",
@@ -668,14 +668,8 @@
         },
         {
           "group_by": false,
-          "label": "IMax",
-          "name": "IMax",
-          "show": false
-        },
-        {
-          "group_by": false,
           "label": "Imax",
-          "name": "Imax",
+          "name": "IMax",
           "show": false
         },
         {
@@ -839,6 +833,12 @@
           "label": "Percent",
           "name": "Percent",
           "show": false
+        },
+        {
+          "group_by": false,
+          "label": "JLCPCB",
+          "name": "JLCPCB",
+          "show": false
         }
       ],
       "filter_string": "",
@@ -897,7 +897,7 @@
         "uuid": "947b52da-b0af-4e24-a217-672042c043ca"
       }
     ],
-    "used_designators": "F1,J2",
+    "used_designators": "F1,R17,J2-3,D7,#PWR34",
     "variants": []
   },
   "sheets": [
